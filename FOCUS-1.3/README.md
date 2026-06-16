@@ -12,15 +12,15 @@ Providers represented: AWS, Microsoft (Azure), Google, Oracle.
 
 | File | Dataset | Content |
 |------|---------|---------|
-| `focus_sample.csv` | CostAndUsage | 1,000-row sample |
+| `focus_sample_costandusage.csv` | CostAndUsage | 1,000-row sample |
 | `focus_sample_contractcommitment.csv` | ContractCommitment | 1,000-row sample (new dataset in 1.3) |
 
 ## Regenerate / validate
 
 ```bash
 cd ../tooling
-python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample.csv
-python -m focusgen regen --version 1.3 --rows 1000 --out ../FOCUS-1.3/focus_sample.csv --allow-persistent
+python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample_costandusage.csv
+python -m focusgen regen --version 1.3 --rows 1000 --out ../FOCUS-1.3/focus_sample_costandusage.csv --allow-persistent
 ```
 
 ## Known validation notes

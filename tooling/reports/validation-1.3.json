@@ -1,7 +1,7 @@
 {
   "version": "1.3",
   "model_version": "1.3.0.3",
-  "data_file": "../FOCUS-1.3/focus_sample.csv",
+  "data_file": "../FOCUS-1.3/focus_sample_costandusage.csv",
   "row_count": 1000,
   "total": 764,
   "passed": 338,

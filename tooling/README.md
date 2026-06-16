@@ -11,9 +11,12 @@ versions **1.0 – 1.4** and all of their datasets.
 | 1.3 | CostAndUsage, ContractCommitment | official |
 | 1.4 | CostAndUsage, ContractCommitment, InvoiceDetail, BillingPeriod | official |
 
-Datasets beyond CostAndUsage are written to `FOCUS-<version>/focus_sample_<dataset>.csv`.
-See [`FINDINGS.md`](FINDINGS.md) for the back-port caveats and the upstream
-model issues this surfaced (including the 1.4 CostAndUsage model cycle).
+File naming: single-dataset versions (1.0-1.2) use `focus_sample.csv`;
+multi-dataset versions (1.3+) name every dataset explicitly, e.g.
+`FOCUS-1.4/focus_sample_costandusage.csv`,
+`FOCUS-1.4/focus_sample_contractcommitment.csv`. See [`FINDINGS.md`](FINDINGS.md)
+for the back-port caveats and the upstream model issues this surfaced (including
+the 1.4 CostAndUsage model cycle).
 
 The tooling does three things:
 
@@ -76,15 +79,15 @@ All commands are modules under `tooling/`; run them from that directory.
 
 ```bash
 # Generate a 1.3 sample (1000 rows, all four providers)
-python -m focusgen gen --version 1.3 --rows 1000 --out ../FOCUS-1.3/focus_sample.csv
+python -m focusgen gen --version 1.3 --rows 1000 --out ../FOCUS-1.3/focus_sample_costandusage.csv
 
 # Validate a CSV against a version (human-readable, then JSON)
-python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample.csv
-python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample.csv --json
+python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample_costandusage.csv
+python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample_costandusage.csv --json
 
 # Generate + validate + self-correct, writing a JSON report
 python -m focusgen regen --version 1.3 --rows 1000 \
-    --out ../FOCUS-1.3/focus_sample.csv --report reports/validation-1.3.json --allow-persistent
+    --out ../FOCUS-1.3/focus_sample_costandusage.csv --report reports/validation-1.3.json --allow-persistent
 
 # Generate a non-CostAndUsage dataset
 python -m focusgen gen --version 1.4 --dataset ContractCommitment \
@@ -142,7 +145,7 @@ spec/model issues and are reported explicitly rather than hidden. See
 
 ## CI
 
-* **`validate-sample-data.yml`** — validates each `FOCUS-<version>/focus_sample.csv`
+* **`validate-sample-data.yml`** — validates each `FOCUS-<version>/focus_sample*.csv`
   against its model on push/PR (version matrix), uploading reports.
 * **`generate-sample-data.yml`** — on-demand/monthly regeneration that opens a PR
   with refreshed samples and reports.

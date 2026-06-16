@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local clones of the tools focusgen wraps (not vendored into this repo)
+/focus_validator/
+/focus_converters/
+/FOCUS_Spec/
+tooling/.venv/
+
+# Build artifacts from the requirements-model assembler (build_json.py)
+build/model-*.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

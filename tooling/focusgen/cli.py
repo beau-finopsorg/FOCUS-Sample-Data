@@ -36,9 +36,14 @@ from .validate import validate
 SPECS_DIR = Path(__file__).resolve().parent.parent / "specs"
 
 
-def _sample_filename(dataset: str) -> str:
-    """CostAndUsage -> focus_sample.csv; others -> focus_sample_<dataset>.csv."""
-    if dataset == DEFAULT_DATASET:
+def _sample_filename(version: str, dataset: str) -> str:
+    """Sample CSV name for a (version, dataset).
+
+    Single-dataset versions (1.0-1.2) use ``focus_sample.csv``. Multi-dataset
+    versions (1.3+) name every dataset explicitly, e.g.
+    ``focus_sample_costandusage.csv`` / ``focus_sample_contractcommitment.csv``.
+    """
+    if len(DATASETS_BY_VERSION.get(version, (DEFAULT_DATASET,))) <= 1:
         return "focus_sample.csv"
     return f"focus_sample_{dataset.lower()}.csv"
 
@@ -109,7 +114,7 @@ def cmd_build_all(args) -> int:
     versions = args.versions or [v for v in SUPPORTED_VERSIONS if v != "1.0"]
     for version in versions:
         for dataset in DATASETS_BY_VERSION.get(version, (DEFAULT_DATASET,)):
-            out = base / f"FOCUS-{version}" / _sample_filename(dataset)
+            out = base / f"FOCUS-{version}" / _sample_filename(version, dataset)
             if version == "1.0" and dataset == DEFAULT_DATASET and out.exists() and not args.force:
                 print(f"\n=== Skipping FOCUS 1.0 CostAndUsage (preserving real-world data; use --force) ===")
                 continue
