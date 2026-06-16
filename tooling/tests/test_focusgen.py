@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from focusgen import SUPPORTED_VERSIONS  # noqa: E402
+from focusgen import DATASETS_BY_VERSION, SUPPORTED_VERSIONS  # noqa: E402
 from focusgen.generator import GenConfig, Generator, _fprod  # noqa: E402
 from focusgen.model import ModelSpec  # noqa: E402
 
@@ -72,6 +72,23 @@ def test_tax_rows_have_null_prices():
     for r in tax:
         assert r["ListUnitPrice"] == "NULL"
         assert r["SkuId"] == "NULL"
+
+
+def test_backported_models_present_and_sized():
+    # 1.0 = 43 columns, 1.1 = 50 columns (focus.finops.org column catalogue)
+    assert len(ModelSpec.load(SPECS / "model-1.0.json").columns) == 43
+    assert len(ModelSpec.load(SPECS / "model-1.1.json").columns) == 50
+
+
+def test_all_datasets_generate_nonempty():
+    for version, datasets in DATASETS_BY_VERSION.items():
+        for ds in datasets:
+            spec = ModelSpec.load(SPECS / f"model-{version}.json", dataset=ds)
+            out = Path(f"/tmp/_fg_{version}_{ds}.csv")
+            n = Generator(spec, GenConfig(version=version, rows=10, seed=2)).write_csv(out)
+            assert n == 10
+            header = out.read_text().splitlines()[0]
+            assert header.count(",") + 1 >= len(spec.emit_columns())
 
 
 if __name__ == "__main__":

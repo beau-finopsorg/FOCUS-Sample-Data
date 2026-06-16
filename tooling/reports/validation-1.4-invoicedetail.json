@@ -1,0 +1,13 @@
+{
+  "version": "1.4",
+  "model_version": "1.4",
+  "data_file": "../FOCUS-1.4/focus_sample_invoicedetail.csv",
+  "row_count": 1000,
+  "total": 260,
+  "passed": 104,
+  "failed": 0,
+  "skipped": 156,
+  "failures": [],
+  "error": null,
+  "compliant": true
+}

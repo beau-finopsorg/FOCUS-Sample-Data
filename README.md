@@ -7,9 +7,15 @@ Repository to store and share samples of FOCUS™ datasets.
 | Directory | FOCUS version | Source | Validated |
 |-----------|---------------|--------|-----------|
 | [`FOCUS-1.0`](FOCUS-1.0) | 1.0 | Anonymized real-world data | Not compliant (see findings) |
+| [`FOCUS-1.1`](FOCUS-1.1) | 1.1 | Generated from a back-ported model | Yes (unofficial back-port) |
 | [`FOCUS-1.2`](FOCUS-1.2) | 1.2 | Generated from the requirements model | Yes (1 known upstream-model failure) |
-| [`FOCUS-1.3`](FOCUS-1.3) | 1.3 | Generated from the requirements model | Yes (known upstream-model failures) |
-| [`FOCUS-1.4`](FOCUS-1.4) | 1.4 | Generated from the requirements model | Blocked upstream (draft model) |
+| [`FOCUS-1.3`](FOCUS-1.3) | 1.3 | Generated; CostAndUsage + ContractCommitment | Yes (known upstream-model failures) |
+| [`FOCUS-1.4`](FOCUS-1.4) | 1.4 | Generated; +InvoiceDetail +BillingPeriod | New datasets yes; CostAndUsage blocked upstream |
+
+Datasets beyond CostAndUsage are in `FOCUS-<version>/focus_sample_<dataset>.csv`
+(ContractCommitment in 1.3+, InvoiceDetail and BillingPeriod in 1.4). FOCUS 1.0
+and 1.1 use **unofficial back-ported** models since no official machine-readable
+model exists for them.
 
 ## Tooling
 

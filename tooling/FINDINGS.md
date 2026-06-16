@@ -12,8 +12,15 @@ Running it through the validator:
 
 | Validated against | Pass | Fail | Skipped |
 |-------------------|------|------|---------|
+| FOCUS 1.0 model (back-port) | 112 | **10** | 295 |
 | FOCUS 1.2 model   | 114  | 23   | 441     |
 | FOCUS 1.3 model   | 178  | 164  | 422     |
+
+Against a **1.0-scoped** model (the fairest test) it still fails 10 rules. The
+version-gap noise disappears, leaving genuine content issues: `ContractedCost`
+null in 7 rows, `PricingUnit` unit-format (9), `ServiceName` -> `ServiceCategory`
+cardinality, and `BilledCost` must-be-0 (615 rows, see below). The larger fail
+counts against 1.2/1.3 are mostly columns those versions added.
 
 Some failures are expected version drift (1.2+ added columns such as
 `InvoiceId` and `ServiceSubcategory`; 1.3 added ~20 columns including
@@ -83,12 +90,53 @@ themselves.
   a validator gap, not a model issue, but it means those JSON-object rules are
   currently unchecked.
 
-## Generated-sample status (1000 rows each)
+## 4. Dataset coverage (1.3 / 1.4)
 
-| Version | Pass | Fail | Skipped | Residual failures |
-|---------|------|------|---------|-------------------|
-| 1.2     | 136  | 1    | 441     | `InvoiceId` contradiction (item 3) |
-| 1.3     | 338  | 4    | 422     | `CapacityReservationStatus` + `PricingCurrencyContractedUnitPrice` (item 3) |
-| 1.4     | n/a  | n/a  | n/a     | model cannot be loaded (item 2) |
+In the requirements model, the additional FOCUS datasets were formalised as
+follows (not all in the version where they first appeared in the spec text):
 
-All residual failures trace to the upstream issues above, not to the generator.
+* **1.3** models **CostAndUsage** and **ContractCommitment**.
+* **1.4** models **CostAndUsage**, **ContractCommitment** (enhanced: 13 -> 30
+  columns), **InvoiceDetail**, and **BillingPeriod**.
+
+The generator and validator are dataset-aware. Generated samples for the new
+datasets are **fully compliant**:
+
+| Version / dataset            | Pass | Fail |
+|------------------------------|------|------|
+| 1.3 ContractCommitment       | 75   | 0    |
+| 1.4 ContractCommitment       | 162  | 0    |
+| 1.4 InvoiceDetail            | 104  | 0    |
+| 1.4 BillingPeriod            | 32   | 0    |
+
+Note the 1.4 dependency cycle (item 2) only blocks **CostAndUsage**; the other
+1.4 datasets load and validate normally.
+
+## 5. Back-ported 1.0 / 1.1 models
+
+There is no official requirements model for 1.0 / 1.1. `backport.py` builds
+unofficial models by filtering the 1.2 model to each version's column set
+(43 columns for 1.0, 50 for 1.1, per the focus.finops.org column catalogue) and
+pruning rules/dependencies that reference dropped columns.
+
+Caveat: these inherit **1.2 rule logic** for retained columns. Where 1.0/1.1
+defined allowed values, nullability, or relationships differently, the back-port
+reflects 1.2. They are for round-tripping and smoke-testing, not authoritative
+conformance. Generated 1.0/1.1 samples validate clean (1.1: 130 pass / 0 fail;
+1.0: 122 pass / 0 fail) — and notably do **not** hit the `InvoiceId`
+contradiction because `InvoiceId` is a 1.2 column.
+
+## Generated-sample status (1000 rows each, CostAndUsage unless noted)
+
+| Version | Pass | Fail | Notes |
+|---------|------|------|-------|
+| 1.0 (CAU, back-port) | 122 | 0 | synthetic; real-world data not overwritten |
+| 1.1 (CAU, back-port) | 130 | 0 | |
+| 1.2     | 136  | 1    | `InvoiceId` contradiction (item 3) |
+| 1.3     | 338  | 4    | `CapacityReservationStatus` + `PricingCurrencyContractedUnitPrice` (item 3) |
+| 1.3 ContractCommitment | 75 | 0 | |
+| 1.4 CostAndUsage | n/a | n/a | model cannot be loaded (item 2) |
+| 1.4 ContractCommitment / InvoiceDetail / BillingPeriod | 162 / 104 / 32 | 0 | |
+
+All CostAndUsage residual failures trace to the upstream issues above, not to
+the generator.

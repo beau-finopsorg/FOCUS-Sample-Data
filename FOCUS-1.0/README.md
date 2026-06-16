@@ -6,6 +6,14 @@ This sample dataset is anonymized real world FOCUS data, made available for thos
 
 More details of this dataset can be found in the [FinOps Foundation Insights Article](https://www.finops.org/insights/focus-sandbox/) and explored in the [FOCUS Sandbox](https://focus.finops.org/sandbox/).
 
+> **Validation note.** This anonymized real-world data is preserved as-is and is
+> not regenerated. When checked with the tooling in [`../tooling`](../tooling)
+> against a back-ported 1.0 model, it is **not fully compliant** (10 rule
+> failures: `ContractedCost` nulls, `PricingUnit` unit format, a `ServiceName`
+> -> `ServiceCategory` cardinality issue, and the `BilledCost` third-party rule).
+> See [`../tooling/FINDINGS.md`](../tooling/FINDINGS.md). Timestamps also use
+> `YYYY-MM-DD HH:MM:SS` rather than the RFC 3339 `...T...Z` form later versions expect.
+
 
 ## Data
 

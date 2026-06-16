@@ -10,9 +10,10 @@ Providers represented: AWS, Microsoft (Azure), Google, Oracle.
 
 ## Datasets
 
-| File | Content |
-|------|---------|
-| `focus_sample.csv` | 1,000-row CostAndUsage sample |
+| File | Dataset | Content |
+|------|---------|---------|
+| `focus_sample.csv` | CostAndUsage | 1,000-row sample |
+| `focus_sample_contractcommitment.csv` | ContractCommitment | 1,000-row sample (new dataset in 1.3) |
 
 ## Regenerate / validate
 

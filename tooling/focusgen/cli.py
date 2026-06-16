@@ -22,13 +22,25 @@ import json
 import sys
 from pathlib import Path
 
-from . import DEFAULT_DATASET, SUPPORTED_VERSIONS
+from . import (
+    BACKPORTED_VERSIONS,
+    DATASETS_BY_VERSION,
+    DEFAULT_DATASET,
+    SUPPORTED_VERSIONS,
+)
 from .generator import GenConfig, Generator
 from .model import ModelSpec
 from .regenerate import regenerate
 from .validate import validate
 
 SPECS_DIR = Path(__file__).resolve().parent.parent / "specs"
+
+
+def _sample_filename(dataset: str) -> str:
+    """CostAndUsage -> focus_sample.csv; others -> focus_sample_<dataset>.csv."""
+    if dataset == DEFAULT_DATASET:
+        return "focus_sample.csv"
+    return f"focus_sample_{dataset.lower()}.csv"
 
 
 def _model_path(version: str, override: str | None) -> str:
@@ -92,17 +104,61 @@ def cmd_regen(args) -> int:
 def cmd_build_all(args) -> int:
     base = Path(args.base)
     rc = 0
-    for version in (args.versions or list(SUPPORTED_VERSIONS)):
-        out = base / f"FOCUS-{version}" / "focus_sample.csv"
-        print(f"\n=== Building FOCUS {version} ===")
-        result = regenerate(
-            version=version, model_path=_model_path(version, None), out_path=str(out),
-            rows=args.rows, seed=args.seed, period=args.period,
-            max_iters=args.max_iters, rule_set_path=str(SPECS_DIR),
-        )
-        print(result.summary())
-        if not result.compliant and not args.allow_persistent:
-            rc = 1
+    # Default: generate 1.1-1.4. FOCUS-1.0 holds anonymized real-world data, so
+    # we never overwrite it unless explicitly listed in --versions.
+    versions = args.versions or [v for v in SUPPORTED_VERSIONS if v != "1.0"]
+    for version in versions:
+        for dataset in DATASETS_BY_VERSION.get(version, (DEFAULT_DATASET,)):
+            out = base / f"FOCUS-{version}" / _sample_filename(dataset)
+            if version == "1.0" and dataset == DEFAULT_DATASET and out.exists() and not args.force:
+                print(f"\n=== Skipping FOCUS 1.0 CostAndUsage (preserving real-world data; use --force) ===")
+                continue
+            label = version if dataset == DEFAULT_DATASET else f"{version}/{dataset}"
+            print(f"\n=== Building FOCUS {label} ===")
+            result = regenerate(
+                version=version, model_path=_model_path(version, None), out_path=str(out),
+                rows=args.rows, seed=args.seed, period=args.period, dataset=dataset,
+                max_iters=args.max_iters, rule_set_path=str(SPECS_DIR),
+            )
+            print(result.summary())
+            if not result.compliant and not args.allow_persistent:
+                rc = 1
+    return rc
+
+
+def _dataset_from_filename(version: str, fname: str) -> str:
+    if fname == "focus_sample.csv":
+        return DEFAULT_DATASET
+    suffix = fname[len("focus_sample_"):-len(".csv")]
+    for ds in DATASETS_BY_VERSION.get(version, (DEFAULT_DATASET,)):
+        if ds.lower() == suffix:
+            return ds
+    return DEFAULT_DATASET
+
+
+def cmd_validate_all(args) -> int:
+    base = Path(args.base)
+    reports_dir = Path(args.reports) if args.reports else (SPECS_DIR.parent / "reports")
+    reports_dir.mkdir(parents=True, exist_ok=True)
+    rc = 0
+    found = False
+    for version in SUPPORTED_VERSIONS:
+        vdir = base / f"FOCUS-{version}"
+        if not vdir.is_dir():
+            continue
+        for csv in sorted(vdir.glob("focus_sample*.csv")):
+            found = True
+            dataset = _dataset_from_filename(version, csv.name)
+            report = validate(str(csv), version, dataset=dataset, rule_set_path=str(SPECS_DIR))
+            tag = version if dataset == DEFAULT_DATASET else f"{version}-{dataset.lower()}"
+            (reports_dir / f"validation-{tag}.json").write_text(report.to_json())
+            status = "OK" if report.compliant else ("ENGINE-ERROR" if report.error else f"FAIL({report.failed})")
+            print(f"  FOCUS {version:4} {dataset:18} {csv.name:42} -> {status} "
+                  f"(pass={report.passed} skip={report.skipped})")
+            if not report.compliant and not report.error and not args.allow_persistent:
+                rc = 1
+    if not found:
+        print("No FOCUS-*/focus_sample*.csv files found.")
     return rc
 
 
@@ -154,7 +210,15 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--period", default="2024-09")
     b.add_argument("--max-iters", type=int, default=5)
     b.add_argument("--allow-persistent", action="store_true")
+    b.add_argument("--force", action="store_true", help="overwrite FOCUS-1.0 real-world data")
     b.set_defaults(func=cmd_build_all)
+
+    va = sub.add_parser("validate-all", help="discover & validate every FOCUS-<v>/focus_sample*.csv")
+    va.add_argument("--base", default="..", help="repo root containing FOCUS-<version>/ dirs")
+    va.add_argument("--reports", default=None, help="directory for JSON reports (default: tooling/reports)")
+    va.add_argument("--allow-persistent", action="store_true",
+                    help="exit 0 even if persistent (upstream) failures remain")
+    va.set_defaults(func=cmd_validate_all)
 
     return p
 

@@ -1,0 +1,13 @@
+{
+  "version": "1.4",
+  "model_version": "1.4",
+  "data_file": "../FOCUS-1.4/focus_sample_billingperiod.csv",
+  "row_count": 1000,
+  "total": 117,
+  "passed": 32,
+  "failed": 0,
+  "skipped": 85,
+  "failures": [],
+  "error": null,
+  "compliant": true
+}

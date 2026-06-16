@@ -1,0 +1,126 @@
+{
+  "version": "1.0",
+  "model_version": "1.0-backport",
+  "data_file": "../FOCUS-1.0/focus_sample_10000.csv",
+  "row_count": 10000,
+  "total": 417,
+  "passed": 108,
+  "failed": 14,
+  "skipped": 295,
+  "failures": [
+    {
+      "rule_id": "ContractedCost-C-003-M",
+      "must_satisfy": "ContractedCost MUST NOT be null.",
+      "violations": 68,
+      "message": "ContractedCost MUST NOT be NULL. [Upstream dependency failed: ContractedCost-C-004-M, ContractedCost-C-004-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "ListCost-C-003-M",
+      "must_satisfy": "ListCost MUST NOT be null.",
+      "violations": 1,
+      "message": "ListCost MUST NOT be NULL. [Upstream dependency failed: ListCost-C-004-M, ListCost-C-004-M]",
+      "reason": "",
+      "column": "ListCost"
+    },
+    {
+      "rule_id": "PricingUnit-C-003-O",
+      "must_satisfy": "PricingUnit SHOULD conform to UnitFormat requirements.",
+      "violations": 137,
+      "message": "Column 'PricingUnit' contains values that do not match FOCUS Unit Format specification",
+      "reason": "",
+      "column": "PricingUnit"
+    },
+    {
+      "rule_id": "PublisherName-C-003-M",
+      "must_satisfy": "PublisherName MUST NOT be null.",
+      "violations": 3,
+      "message": "PublisherName MUST NOT be NULL.",
+      "reason": "",
+      "column": "PublisherName"
+    },
+    {
+      "rule_id": "ContractedCost-C-004-M",
+      "must_satisfy": "ContractedCost MUST be a valid decimal value.",
+      "violations": 68,
+      "message": "ContractedCost MUST NOT be NULL. [Upstream dependency failed: ContractedCost-C-003-M, ContractedCost-C-003-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "ListCost-C-004-M",
+      "must_satisfy": "ListCost MUST be a valid decimal value.",
+      "violations": 1,
+      "message": "ListCost MUST NOT be NULL. [Upstream dependency failed: ListCost-C-003-M, ListCost-C-003-M]",
+      "reason": "",
+      "column": "ListCost"
+    },
+    {
+      "rule_id": "ServiceName-C-005-C",
+      "must_satisfy": "ServiceName MUST have one and only one ServiceCategory that best aligns with its primary purpose, except when no suitable ServiceCategory is available.",
+      "violations": 3,
+      "message": "For each ServiceName, there MUST be exactly 1 distinct ServiceCategory values.",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "PublisherName-C-000-M",
+      "must_satisfy": "The PublisherName column adheres to the following requirements:",
+      "violations": 1,
+      "message": "PublisherName-C-000-M: AND failed - failed child rules: [PublisherName-C-003-M]",
+      "reason": "",
+      "column": "PublisherName"
+    },
+    {
+      "rule_id": "PricingUnit-C-000-M",
+      "must_satisfy": "The PricingUnit column adheres to the following requirements:",
+      "violations": 1,
+      "message": "PricingUnit-C-000-M: AND failed - failed child rules: [PricingUnit-C-003-O]",
+      "reason": "",
+      "column": "PricingUnit"
+    },
+    {
+      "rule_id": "ServiceName-C-004-C",
+      "must_satisfy": "The relationship between ServiceName and ServiceCategory is defined as follows:",
+      "violations": 1,
+      "message": "ServiceName-C-004-C: AND failed - failed child rules: [ServiceName-C-005-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "BilledCost-C-005-C",
+      "must_satisfy": "BilledCost MUST be 0 for charges where payments are received by a third party (e.g., marketplace transactions).",
+      "violations": 6282,
+      "message": "BilledCost MUST equal '0'.",
+      "reason": "",
+      "column": "BilledCost"
+    },
+    {
+      "rule_id": "BilledCost-C-000-M",
+      "must_satisfy": "The BilledCost column adheres to the following requirements:",
+      "violations": 1,
+      "message": "BilledCost-C-000-M: AND failed - failed child rules: [BilledCost-C-005-C]",
+      "reason": "",
+      "column": "BilledCost"
+    },
+    {
+      "rule_id": "ServiceName-C-000-M",
+      "must_satisfy": "The ServiceName column adheres to the following requirements:",
+      "violations": 1,
+      "message": "ServiceName-C-000-M: AND failed - failed child rules: [ServiceName-C-004-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "ContractedCost-C-000-M",
+      "must_satisfy": "The ContractedCost column adheres to the following requirements:",
+      "violations": 1,
+      "message": "ContractedCost-C-000-M: AND failed - failed child rules: [ContractedCost-C-003-M, ContractedCost-C-004-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    }
+  ],
+  "error": null,
+  "compliant": false
+}

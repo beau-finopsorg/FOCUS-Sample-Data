@@ -1,0 +1,13 @@
+{
+  "version": "1.4",
+  "model_version": "1.4",
+  "data_file": "../FOCUS-1.4/focus_sample_contractcommitment.csv",
+  "row_count": 1000,
+  "total": 284,
+  "passed": 162,
+  "failed": 0,
+  "skipped": 122,
+  "failures": [],
+  "error": null,
+  "compliant": true
+}

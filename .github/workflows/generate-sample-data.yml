@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
     inputs:
       versions:
-        description: "Space-separated versions to build (default: 1.2 1.3 1.4)"
-        default: "1.2 1.3 1.4"
+        description: "Space-separated versions to build (default: 1.1 1.2 1.3 1.4; 1.0 holds real data)"
+        default: "1.1 1.2 1.3 1.4"
         required: false
       rows:
         description: "Rows per sample"
@@ -42,7 +42,7 @@ jobs:
       - name: Generate + validate + self-correct
         working-directory: tooling
         run: |
-          VERSIONS="${{ github.event.inputs.versions || '1.2 1.3 1.4' }}"
+          VERSIONS="${{ github.event.inputs.versions || '1.1 1.2 1.3 1.4' }}"
           ROWS="${{ github.event.inputs.rows || '1000' }}"
           EXTRA=""
           if [ "${{ github.event.inputs.allow_persistent || 'true' }}" = "true" ]; then
@@ -50,11 +50,8 @@ jobs:
           fi
           mkdir -p reports
           python -m focusgen build-all --base .. --rows "$ROWS" --versions $VERSIONS $EXTRA
-          for v in $VERSIONS; do
-            python -m focusgen validate --version "$v" \
-              --data-file "../FOCUS-$v/focus_sample.csv" --json \
-              > "reports/validation-$v.json" || true
-          done
+          # validate every generated sample/dataset and write reports
+          python -m focusgen validate-all --base .. --allow-persistent || true
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6

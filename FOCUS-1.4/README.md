@@ -10,16 +10,21 @@ Providers represented: AWS, Microsoft (Azure), Google, Oracle.
 
 ## Datasets
 
-| File | Content |
-|------|---------|
-| `focus_sample.csv` | 1,000-row CostAndUsage sample |
+| File | Dataset | Content |
+|------|---------|---------|
+| `focus_sample.csv` | CostAndUsage | 1,000-row sample (see note below) |
+| `focus_sample_contractcommitment.csv` | ContractCommitment | enhanced in 1.4 (30 columns); fully compliant |
+| `focus_sample_invoicedetail.csv` | InvoiceDetail | new dataset in 1.4; fully compliant |
+| `focus_sample_billingperiod.csv` | BillingPeriod | new dataset in 1.4; fully compliant |
 
-## Important: validation is currently blocked upstream
+## Important: CostAndUsage validation is blocked upstream
 
 The FOCUS 1.4 working-draft requirements model cannot be loaded by the FOCUS
-validator — it contains a dependency cycle among the `CommitmentDiscount*`
-rules (`Active-edge cycle detected`). This sample is therefore **generated but
-not yet machine-validated**. Once the upstream model cycle is resolved, run:
+validator for the **CostAndUsage** dataset — it contains a dependency cycle
+among the `CommitmentDiscount*` rules (`Active-edge cycle detected`). The
+`focus_sample.csv` (CostAndUsage) is therefore **generated but not yet
+machine-validated**. The other three 1.4 datasets are unaffected and validate
+clean. Once the upstream cycle is resolved, run:
 
 ```bash
 cd ../tooling

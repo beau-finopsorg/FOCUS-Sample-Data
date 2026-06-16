@@ -1,7 +1,19 @@
 # FOCUS sample-data tooling (`focusgen`)
 
-Model-driven generation and validation of FOCUS™ sample datasets for FOCUS
-versions **1.2, 1.3, and 1.4**.
+Model-driven generation and validation of FOCUS™ sample datasets across FOCUS
+versions **1.0 – 1.4** and all of their datasets.
+
+| Version | Datasets modelled | Model source |
+|---------|-------------------|--------------|
+| 1.0 | CostAndUsage | back-ported (unofficial) |
+| 1.1 | CostAndUsage | back-ported (unofficial) |
+| 1.2 | CostAndUsage | official |
+| 1.3 | CostAndUsage, ContractCommitment | official |
+| 1.4 | CostAndUsage, ContractCommitment, InvoiceDetail, BillingPeriod | official |
+
+Datasets beyond CostAndUsage are written to `FOCUS-<version>/focus_sample_<dataset>.csv`.
+See [`FINDINGS.md`](FINDINGS.md) for the back-port caveats and the upstream
+model issues this surfaced (including the 1.4 CostAndUsage model cycle).
 
 The tooling does three things:
 
@@ -45,8 +57,9 @@ is why 1.0 and 1.1 are out of scope (no requirements model exists for them).
 | `focusgen/generator.py` | Synthesise compliant rows for a version/dataset |
 | `focusgen/validate.py` | Run the FOCUS validator, return a structured report |
 | `focusgen/regenerate.py` | Generate → validate → adjust → regenerate loop |
-| `focusgen/cli.py` | `gen` / `validate` / `regen` / `build-all` commands |
-| `specs/model-<version>.json` | Vendored assembled models (1.2, 1.3, 1.4) |
+| `focusgen/backport.py` | Build unofficial 1.0 / 1.1 models from the 1.2 model |
+| `focusgen/cli.py` | `gen` / `validate` / `regen` / `build-all` / `validate-all` |
+| `specs/model-<version>.json` | Assembled models (1.2-1.4 official, 1.0/1.1 back-ported) |
 | `reports/` | Saved validation reports |
 
 ## Install
@@ -73,8 +86,18 @@ python -m focusgen validate --version 1.3 --data-file ../FOCUS-1.3/focus_sample.
 python -m focusgen regen --version 1.3 --rows 1000 \
     --out ../FOCUS-1.3/focus_sample.csv --report reports/validation-1.3.json --allow-persistent
 
-# Build samples for every supported version into FOCUS-<version>/focus_sample.csv
+# Generate a non-CostAndUsage dataset
+python -m focusgen gen --version 1.4 --dataset ContractCommitment \
+    --out ../FOCUS-1.4/focus_sample_contractcommitment.csv
+
+# Build samples for all versions/datasets (skips FOCUS-1.0 real-world data)
 python -m focusgen build-all --base .. --rows 1000 --allow-persistent
+
+# Discover & validate every FOCUS-<v>/focus_sample*.csv, writing reports
+python -m focusgen validate-all --base .. --allow-persistent
+
+# (Re)build the back-ported 1.0/1.1 models from the 1.2 model
+python -m focusgen.backport
 ```
 
 Useful flags: `--providers aws,azure`, `--seed N` (reproducible),

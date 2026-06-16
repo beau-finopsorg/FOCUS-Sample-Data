@@ -62,6 +62,24 @@ def _ds(d) -> str:
     return format(d, "f")
 
 
+def _generic_string(name: str, prov, rng) -> str:
+    """A plausible string value for a non-enum string column."""
+    n = name.lower()
+    if name in ("InvoiceIssuerName", "ServiceProviderName", "ProviderName", "PublisherName", "HostProviderName"):
+        return prov.provider_name
+    if n.endswith("id"):
+        return f"{name[:-2].lower()}-{rng.randint(100000, 999999)}"
+    if "description" in n:
+        return f"{name} {rng.randint(1000, 9999)}"
+    if "terms" in n:
+        return rng.choice(["Net 30", "Net 60", "Due on receipt"])
+    if "ordernumber" in n:
+        return f"PO-{rng.randint(100000, 999999)}"
+    if name in ("ContractCommitmentType", "ContractCommitmentDurationType"):
+        return rng.choice(["Reserved Instance", "Savings Plan", "Committed Use Discount"])
+    return f"{name}-{rng.randint(1000, 9999)}"
+
+
 def _fprod(a: str, b: str) -> str:
     """Round-trip repr of the IEEE-754 product of two decimal strings.
 
@@ -113,10 +131,104 @@ class Generator:
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("w", newline="") as fh:
             fh.write(self._serialize_header())
+            build = self._build_row if self.spec.dataset == "CostAndUsage" else self._build_generic_row
             for _ in range(self.config.rows):
-                row = self._build_row()
+                row = build()
                 fh.write(self._serialize_row(row))
         return self.config.rows
+
+    # ------------------------------------------------------------------ #
+    def _build_generic_row(self) -> Dict[str, object]:
+        """Model-driven row builder for non-CostAndUsage datasets.
+
+        Adds a coherent datetime timeline and currency handling on top of the
+        generic per-column synthesis; everything else comes straight from the
+        parsed model (type / enum / nullability / format).
+        """
+        rng = self.rng
+        prov = rng.choice(self.providers)
+
+        # Coherent timeline: created <= period start < period end <= last updated.
+        created = self.billing_start - timedelta(days=rng.randint(1, 20))
+        period_start = self.billing_start
+        period_end = self.billing_end
+        last_updated = period_end + timedelta(days=rng.randint(0, 10))
+        issue_date = period_end + timedelta(days=rng.randint(1, 5))
+        due_date = issue_date + timedelta(days=rng.randint(7, 30))
+
+        def dt_for(name: str) -> datetime:
+            n = name.lower()
+            if "created" in n:
+                return created
+            if "lastupdated" in n or "updated" in n:
+                return last_updated
+            if "periodend" in n or n.endswith("end"):
+                return period_end
+            if "periodstart" in n or n.endswith("start"):
+                return period_start
+            if "duedate" in n:
+                return due_date
+            if "issue" in n or n.endswith("date"):
+                return issue_date
+            return period_start
+
+        row: Dict[str, object] = {}
+        for cspec in self.emit_cols:
+            name = cspec.name
+            hint = self.overrides.get(name, {})
+            if "value" in hint:
+                row[name] = hint["value"]
+                continue
+            must = (not cspec.nullable) or cspec.presence == "required"
+            if name.lower().endswith("currency") or cspec.fmt == "currency":
+                row[name] = prov.currency
+            elif cspec.is_enum:
+                row[name] = rng.choice(cspec.allowed)
+            elif cspec.dtype == "datetime" or cspec.fmt == "datetime":
+                row[name] = _dt(dt_for(name)) if must or rng.random() < 0.8 else None
+            elif cspec.dtype == "decimal" or cspec.fmt == "numeric":
+                row[name] = repr(round(rng.uniform(0, 10000), 6)) if must else None
+            elif cspec.dtype == "json" or cspec.fmt in ("json", "keyvalue"):
+                row[name] = "{}" if must else None
+            elif "currency" in name.lower():
+                row[name] = prov.currency
+            elif not must:
+                row[name] = None
+            else:
+                row[name] = _generic_string(name, prov, rng)
+        # enforce enum validity deterministically (safety net)
+        for cspec in self.emit_cols:
+            v = row.get(cspec.name)
+            if cspec.is_enum and v is not None and v not in cspec.allowed:
+                row[cspec.name] = cspec.allowed[zlib.crc32(str(v).encode()) % len(cspec.allowed)]
+        self._dataset_coherence(row)
+        return row
+
+    def _dataset_coherence(self, row: Dict[str, object]) -> None:
+        """Cross-column coherence for non-CAU datasets (skips overridden cols)."""
+        ov = self.overrides
+
+        def setv(col, val):
+            if col in row and col not in ov:
+                row[col] = val
+
+        # ContractCommitment: payment model drives interval & upfront percentage
+        pm = row.get("ContractCommitmentPaymentModel")
+        if pm == "All Upfront":
+            setv("ContractCommitmentPaymentUpfrontPercentage", "1.0")
+            setv("ContractCommitmentPaymentInterval", "One-Time")
+        elif pm == "No Upfront":
+            setv("ContractCommitmentPaymentUpfrontPercentage", "0.0")
+        # DiscountPercentage MUST be null for Availability benefit category
+        if row.get("ContractCommitmentBenefitCategory") == "Availability":
+            setv("ContractCommitmentDiscountPercentage", None)
+        # use a UnitFormat-valid unit
+        if row.get("ContractCommitmentUnit") is not None:
+            setv("ContractCommitmentUnit", "Hours")
+
+        # InvoiceDetail: payment-currency id mirrors the record id (same currency)
+        if row.get("InvoiceDetailId") is not None:
+            setv("PaymentCurrencyInvoiceDetailId", row.get("InvoiceDetailId"))
 
     # ------------------------------------------------------------------ #
     def _serialize_header(self) -> str:
