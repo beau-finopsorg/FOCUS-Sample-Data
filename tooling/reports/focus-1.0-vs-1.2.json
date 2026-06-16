@@ -1,0 +1,198 @@
+{
+  "version": "1.2",
+  "model_version": "1.2.0.3",
+  "data_file": "FOCUS-1.0/focus_sample.csv",
+  "row_count": 1000,
+  "total": 578,
+  "passed": 114,
+  "failed": 23,
+  "skipped": 441,
+  "failures": [
+    {
+      "rule_id": "CostAndUsage-D-033-O",
+      "must_satisfy": "InvoiceId is RECOMMENDED to be present in a FOCUS dataset.",
+      "violations": 1,
+      "message": "Column 'InvoiceId' RECOMMENDED be present in the table. [Upstream dependency failed: CostAndUsage-D-042-O (missing column), CostAndUsage-D-042-O (missing column)]",
+      "reason": "",
+      "column": "CostAndUsage"
+    },
+    {
+      "rule_id": "CostAndUsage-D-042-O",
+      "must_satisfy": "ServiceSubcategory is RECOMMENDED to be present in a FOCUS dataset.",
+      "violations": 1,
+      "message": "Column 'ServiceSubcategory' RECOMMENDED be present in the table. [Upstream dependency failed: CostAndUsage-D-033-O (missing column), CostAndUsage-D-033-O (missing column)]",
+      "reason": "",
+      "column": "CostAndUsage"
+    },
+    {
+      "rule_id": "InvoiceId-C-001-M",
+      "must_satisfy": "InvoiceId MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule InvoiceId-C-001-M failed [Upstream dependency failed: CostAndUsage-D-033-O (missing column), InvoiceId-C-002-M, InvoiceId-C-002-M]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "ServiceSubcategory-C-001-M",
+      "must_satisfy": "ServiceSubcategory MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule ServiceSubcategory-C-001-M failed [Upstream dependency failed: CostAndUsage-D-042-O - required column not present]",
+      "reason": "",
+      "column": "ServiceSubcategory"
+    },
+    {
+      "rule_id": "InvoiceId-C-002-M",
+      "must_satisfy": "InvoiceId MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule InvoiceId-C-002-M failed [Upstream dependency failed: CostAndUsage-D-033-O (missing column), InvoiceId-C-001-M, InvoiceId-C-001-M]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "ServiceSubcategory-C-002-M",
+      "must_satisfy": "ServiceSubcategory MUST NOT be null.",
+      "violations": 1,
+      "message": "Validation rule ServiceSubcategory-C-002-M failed [Upstream dependency failed: CostAndUsage-D-042-O - required column not present]",
+      "reason": "",
+      "column": "ServiceSubcategory"
+    },
+    {
+      "rule_id": "ContractedCost-C-003-M",
+      "must_satisfy": "ContractedCost MUST NOT be null.",
+      "violations": 7,
+      "message": "ContractedCost MUST NOT be NULL. [Upstream dependency failed: ContractedCost-C-004-M, ContractedCost-C-004-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "PricingUnit-C-003-O",
+      "must_satisfy": "PricingUnit SHOULD conform to UnitFormat requirements.",
+      "violations": 9,
+      "message": "Column 'PricingUnit' contains values that do not match FOCUS Unit Format specification",
+      "reason": "",
+      "column": "PricingUnit"
+    },
+    {
+      "rule_id": "ContractedCost-C-004-M",
+      "must_satisfy": "ContractedCost MUST be a valid decimal value.",
+      "violations": 7,
+      "message": "ContractedCost MUST NOT be NULL. [Upstream dependency failed: ContractedCost-C-003-M, ContractedCost-C-003-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "InvoiceId-C-004-C",
+      "must_satisfy": "InvoiceId MUST be null when the charge is not associated either with an invoice or with a pre-generated provisional invoice.",
+      "violations": 1,
+      "message": "Validation rule InvoiceId-C-004-C failed",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "InvoiceId-C-005-C",
+      "must_satisfy": "InvoiceId MUST NOT be null when the charge is associated with either an issued invoice or a pre-generated provisional invoice.",
+      "violations": 1,
+      "message": "Validation rule InvoiceId-C-005-C failed",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "ServiceName-C-005-C",
+      "must_satisfy": "ServiceName MUST have one and only one ServiceCategory that best aligns with its primary purpose, except when no suitable ServiceCategory is available.",
+      "violations": 1,
+      "message": "For each ServiceName, there MUST be exactly 1 distinct ServiceCategory values.",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "ServiceName-C-008-C",
+      "must_satisfy": "ServiceName SHOULD have one and only one ServiceSubcategory that best aligns with its primary purpose, except when no suitable ServiceSubcategory is available.",
+      "violations": 1,
+      "message": "Validation rule ServiceName-C-008-C failed [Upstream dependency failed: ServiceSubcategory-C-000-O]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "ServiceSubcategory-C-000-O",
+      "must_satisfy": "The ServiceSubcategory column adheres to the following requirements:",
+      "violations": 1,
+      "message": "ServiceSubcategory-C-000-O: AND failed - failed child rules: [ServiceSubcategory-C-001-M, ServiceSubcategory-C-002-M]",
+      "reason": "",
+      "column": "ServiceSubcategory"
+    },
+    {
+      "rule_id": "InvoiceId-C-003-C",
+      "must_satisfy": "InvoiceId nullability is defined as follows:",
+      "violations": 0,
+      "message": "InvoiceId-C-003-C: OR failed - all child rules failed: [model_rule_reference#1, model_rule_reference#2]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "PricingUnit-C-000-M",
+      "must_satisfy": "The PricingUnit column adheres to the following requirements:",
+      "violations": 1,
+      "message": "PricingUnit-C-000-M: AND failed - failed child rules: [PricingUnit-C-003-O]",
+      "reason": "",
+      "column": "PricingUnit"
+    },
+    {
+      "rule_id": "ServiceName-C-004-C",
+      "must_satisfy": "The relationship between ServiceName and ServiceCategory is defined as follows:",
+      "violations": 1,
+      "message": "ServiceName-C-004-C: AND failed - failed child rules: [ServiceName-C-005-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "BilledCost-C-005-C",
+      "must_satisfy": "BilledCost MUST be 0 for charges where payments are received by a third party (e.g., marketplace transactions).",
+      "violations": 615,
+      "message": "BilledCost MUST equal '0'.",
+      "reason": "",
+      "column": "BilledCost"
+    },
+    {
+      "rule_id": "ServiceName-C-007-C",
+      "must_satisfy": "The relationship between ServiceName and ServiceSubcategory is defined as follows:",
+      "violations": 1,
+      "message": "ServiceName-C-007-C: AND failed - failed child rules: [ServiceName-C-008-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "BilledCost-C-000-M",
+      "must_satisfy": "The BilledCost column adheres to the following requirements:",
+      "violations": 1,
+      "message": "BilledCost-C-000-M: AND failed - failed child rules: [BilledCost-C-005-C]",
+      "reason": "",
+      "column": "BilledCost"
+    },
+    {
+      "rule_id": "InvoiceId-C-000-O",
+      "must_satisfy": "The InvoiceId column adheres to the following requirements:",
+      "violations": 1,
+      "message": "InvoiceId-C-000-O: AND failed - failed child rules: [InvoiceId-C-001-M, InvoiceId-C-002-M, InvoiceId-C-003-C]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "ServiceName-C-000-M",
+      "must_satisfy": "The ServiceName column adheres to the following requirements:",
+      "violations": 1,
+      "message": "ServiceName-C-000-M: AND failed - failed child rules: [ServiceName-C-004-C, ServiceName-C-007-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "ContractedCost-C-000-M",
+      "must_satisfy": "The ContractedCost column adheres to the following requirements:",
+      "violations": 1,
+      "message": "ContractedCost-C-000-M: AND failed - failed child rules: [ContractedCost-C-003-M, ContractedCost-C-004-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    }
+  ],
+  "error": null,
+  "compliant": false
+}

@@ -1,0 +1,46 @@
+{
+  "version": "1.3",
+  "model_version": "1.3.0.3",
+  "data_file": "FOCUS-1.3/focus_sample.csv",
+  "row_count": 1000,
+  "total": 764,
+  "passed": 338,
+  "failed": 4,
+  "skipped": 422,
+  "failures": [
+    {
+      "rule_id": "CAU-CapacityReservationStatus-C-004-C",
+      "must_satisfy": "CapacityReservationStatus MUST NOT be null when CapacityReservationId is not null and ChargeCategory is \"Usage\".",
+      "violations": 1000,
+      "message": "CapacityReservationStatus MUST NOT be NULL.",
+      "reason": "",
+      "column": "CapacityReservationStatus"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationStatus-C-002-C",
+      "must_satisfy": "CapacityReservationStatus nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-CapacityReservationStatus-C-002-C: AND failed - failed child rules: [CAU-CapacityReservationStatus-C-004-C]",
+      "reason": "",
+      "column": "CapacityReservationStatus"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-012-C",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice MUST NOT be null when SkuPriceId is not null.",
+      "violations": 44,
+      "message": "PricingCurrencyContractedUnitPrice MUST NOT be NULL.",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-003-M",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-PricingCurrencyContractedUnitPrice-C-003-M: AND failed - failed child rules: [CAU-PricingCurrencyContractedUnitPrice-C-012-C]",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    }
+  ],
+  "error": null,
+  "compliant": false
+}

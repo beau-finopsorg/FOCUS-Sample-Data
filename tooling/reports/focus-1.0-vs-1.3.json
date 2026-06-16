@@ -1,0 +1,1326 @@
+{
+  "version": "1.3",
+  "model_version": "1.3.0.3",
+  "data_file": "FOCUS-1.0/focus_sample.csv",
+  "row_count": 1000,
+  "total": 764,
+  "passed": 178,
+  "failed": 164,
+  "skipped": 422,
+  "failures": [
+    {
+      "rule_id": "CAU-CostAndUsage-D-033-O",
+      "must_satisfy": "InvoiceId is RECOMMENDED to be present in a Cost and Usage FOCUS dataset.",
+      "violations": 1,
+      "message": "Column 'InvoiceId' RECOMMENDED be present in the table. [Upstream dependency failed: CAU-CostAndUsage-D-042-O (missing column), CAU-CostAndUsage-D-042-O (missing column), CAU-CostAndUsage-D-075-M (missing column), CAU-CostAndUsage-D-075-M (missing column), CAU-CostAndUsage-D-076-M (missing column), CAU-CostAndUsage-D-076-M (missing column)]",
+      "reason": "",
+      "column": "CostAndUsage"
+    },
+    {
+      "rule_id": "CAU-CostAndUsage-D-042-O",
+      "must_satisfy": "ServiceSubcategory is RECOMMENDED to be present in a Cost and Usage FOCUS dataset.",
+      "violations": 1,
+      "message": "Column 'ServiceSubcategory' RECOMMENDED be present in the table. [Upstream dependency failed: CAU-CostAndUsage-D-033-O (missing column), CAU-CostAndUsage-D-033-O (missing column), CAU-CostAndUsage-D-075-M (missing column), CAU-CostAndUsage-D-075-M (missing column), CAU-CostAndUsage-D-076-M (missing column), CAU-CostAndUsage-D-076-M (missing column)]",
+      "reason": "",
+      "column": "CostAndUsage"
+    },
+    {
+      "rule_id": "CAU-CostAndUsage-D-075-M",
+      "must_satisfy": "HostProviderName MUST be present in a Cost and Usage FOCUS dataset.",
+      "violations": 1,
+      "message": "Column 'HostProviderName' MUST be present in the table. [Upstream dependency failed: CAU-CostAndUsage-D-033-O (missing column), CAU-CostAndUsage-D-033-O (missing column), CAU-CostAndUsage-D-042-O (missing column), CAU-CostAndUsage-D-042-O (missing column), CAU-CostAndUsage-D-076-M (missing column), CAU-CostAndUsage-D-076-M (missing column)]",
+      "reason": "",
+      "column": "CostAndUsage"
+    },
+    {
+      "rule_id": "CAU-CostAndUsage-D-076-M",
+      "must_satisfy": "ServiceProviderName MUST be present in a Cost and Usage FOCUS dataset.",
+      "violations": 1,
+      "message": "Column 'ServiceProviderName' MUST be present in the table. [Upstream dependency failed: CAU-CostAndUsage-D-033-O (missing column), CAU-CostAndUsage-D-033-O (missing column), CAU-CostAndUsage-D-042-O (missing column), CAU-CostAndUsage-D-042-O (missing column), CAU-CostAndUsage-D-075-M (missing column), CAU-CostAndUsage-D-075-M (missing column)]",
+      "reason": "",
+      "column": "CostAndUsage"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetails-C-001-M",
+      "must_satisfy": "AllocatedMethodDetails MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetails-C-001-M failed [Upstream dependency failed: CAU-AllocatedMethodDetails-C-002-M, CAU-AllocatedMethodDetails-C-002-M, CAU-AllocatedMethodDetails-C-007-C, CAU-AllocatedMethodDetails-C-007-C]",
+      "reason": "",
+      "column": "AllocatedMethodDetails"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodId-C-001-M",
+      "must_satisfy": "AllocatedMethodId MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodId-C-001-M failed [Upstream dependency failed: CAU-AllocatedMethodId-C-002-M, CAU-AllocatedMethodId-C-002-M]",
+      "reason": "",
+      "column": "AllocatedMethodId"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceId-C-001-M",
+      "must_satisfy": "AllocatedResourceId MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedResourceId-C-001-M failed [Upstream dependency failed: CAU-AllocatedResourceId-C-002-M, CAU-AllocatedResourceId-C-002-M]",
+      "reason": "",
+      "column": "AllocatedResourceId"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceName-C-001-M",
+      "must_satisfy": "AllocatedResourceName MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedResourceName-C-001-M failed [Upstream dependency failed: CAU-AllocatedResourceName-C-002-M, CAU-AllocatedResourceName-C-002-M, CAU-AllocatedResourceName-C-003-C, CAU-AllocatedResourceName-C-003-C]",
+      "reason": "",
+      "column": "AllocatedResourceName"
+    },
+    {
+      "rule_id": "CAU-AllocatedTags-C-001-M",
+      "must_satisfy": "AllocatedTags MUST conform to KeyValueFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedTags-C-001-M failed",
+      "reason": "",
+      "column": "AllocatedTags"
+    },
+    {
+      "rule_id": "CAU-BillingAccountType-C-001-M",
+      "must_satisfy": "BillingAccountType MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-BillingAccountType-C-001-M failed [Upstream dependency failed: CAU-BillingAccountType-C-002-M, CAU-BillingAccountType-C-002-M, CAU-BillingAccountType-C-003-C, CAU-BillingAccountType-C-003-C]",
+      "reason": "",
+      "column": "BillingAccountType"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationId-C-001-M",
+      "must_satisfy": "CapacityReservationId MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-CapacityReservationId-C-001-M failed [Upstream dependency failed: CAU-CapacityReservationId-C-002-M, CAU-CapacityReservationId-C-002-M, CAU-CapacityReservationId-C-003-C, CAU-CapacityReservationId-C-003-C]",
+      "reason": "",
+      "column": "CapacityReservationId"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationStatus-C-001-M",
+      "must_satisfy": "CapacityReservationStatus MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-CapacityReservationStatus-C-001-M failed [Upstream dependency failed: CAU-CapacityReservationStatus-C-002-C, CAU-CapacityReservationStatus-C-002-C]",
+      "reason": "",
+      "column": "CapacityReservationStatus"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountQuantity-C-001-M",
+      "must_satisfy": "CommitmentDiscountQuantity MUST be of type Decimal.",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountQuantity-C-001-M failed [Upstream dependency failed: CAU-CommitmentDiscountQuantity-C-002-M, CAU-CommitmentDiscountQuantity-C-002-M]",
+      "reason": "",
+      "column": "CommitmentDiscountQuantity"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountUnit-C-001-M",
+      "must_satisfy": "CommitmentDiscountUnit MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountUnit-C-001-M failed [Upstream dependency failed: CAU-CommitmentDiscountUnit-C-002-M, CAU-CommitmentDiscountUnit-C-002-M, CAU-CommitmentDiscountUnit-C-003-O, CAU-CommitmentDiscountUnit-C-003-O]",
+      "reason": "",
+      "column": "CommitmentDiscountUnit"
+    },
+    {
+      "rule_id": "CAU-HostProviderName-C-001-M",
+      "must_satisfy": "HostProviderName MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-HostProviderName-C-001-M failed [Upstream dependency failed: CAU-CostAndUsage-D-075-M - required column not present]",
+      "reason": "",
+      "column": "HostProviderName"
+    },
+    {
+      "rule_id": "CAU-InvoiceId-C-001-M",
+      "must_satisfy": "InvoiceId MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-InvoiceId-C-001-M failed [Upstream dependency failed: CAU-CostAndUsage-D-033-O (missing column), CAU-InvoiceId-C-002-M, CAU-InvoiceId-C-002-M]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "CAU-PricingCurrency-C-001-M",
+      "must_satisfy": "PricingCurrency MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrency-C-001-M failed [Upstream dependency failed: CAU-PricingCurrency-C-002-M, CAU-PricingCurrency-C-002-M, CAU-PricingCurrency-C-003-M, CAU-PricingCurrency-C-003-M, CAU-PricingCurrency-C-004-M, CAU-PricingCurrency-C-004-M]",
+      "reason": "",
+      "column": "PricingCurrency"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-001-M",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice MUST be of type Decimal.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyContractedUnitPrice-C-001-M failed [Upstream dependency failed: CAU-PricingCurrencyContractedUnitPrice-C-002-M, CAU-PricingCurrencyContractedUnitPrice-C-002-M, CAU-PricingCurrencyContractedUnitPrice-C-003-M, CAU-PricingCurrencyContractedUnitPrice-C-003-M]",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyEffectiveCost-C-001-M",
+      "must_satisfy": "PricingCurrencyEffectiveCost MUST be of type Decimal.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyEffectiveCost-C-001-M failed [Upstream dependency failed: CAU-PricingCurrencyEffectiveCost-C-002-M, CAU-PricingCurrencyEffectiveCost-C-002-M, CAU-PricingCurrencyEffectiveCost-C-003-M, CAU-PricingCurrencyEffectiveCost-C-003-M, CAU-PricingCurrencyEffectiveCost-C-004-M, CAU-PricingCurrencyEffectiveCost-C-004-M]",
+      "reason": "",
+      "column": "PricingCurrencyEffectiveCost"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-001-M",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST be of type Decimal.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-001-M failed [Upstream dependency failed: CAU-PricingCurrencyListUnitPrice-C-002-M, CAU-PricingCurrencyListUnitPrice-C-002-M, CAU-PricingCurrencyListUnitPrice-C-003-M, CAU-PricingCurrencyListUnitPrice-C-003-M, CAU-PricingCurrencyListUnitPrice-C-007-C, CAU-PricingCurrencyListUnitPrice-C-007-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ServiceProviderName-C-001-M",
+      "must_satisfy": "ServiceProviderName MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-ServiceProviderName-C-001-M failed [Upstream dependency failed: CAU-CostAndUsage-D-076-M - required column not present]",
+      "reason": "",
+      "column": "ServiceProviderName"
+    },
+    {
+      "rule_id": "CAU-ServiceSubcategory-C-001-M",
+      "must_satisfy": "ServiceSubcategory MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-ServiceSubcategory-C-001-M failed [Upstream dependency failed: CAU-CostAndUsage-D-042-O - required column not present]",
+      "reason": "",
+      "column": "ServiceSubcategory"
+    },
+    {
+      "rule_id": "CAU-SkuMeter-C-001-M",
+      "must_satisfy": "SkuMeter MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-SkuMeter-C-001-M failed [Upstream dependency failed: CAU-SkuMeter-C-002-M, CAU-SkuMeter-C-002-M, CAU-SkuMeter-C-003-C, CAU-SkuMeter-C-003-C]",
+      "reason": "",
+      "column": "SkuMeter"
+    },
+    {
+      "rule_id": "CAU-SkuPriceDetails-C-001-M",
+      "must_satisfy": "SkuPriceDetails MUST conform to KeyValueFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-SkuPriceDetails-C-001-M failed [Upstream dependency failed: CAU-SkuPriceDetails-C-003-C, CAU-SkuPriceDetails-C-003-C]",
+      "reason": "",
+      "column": "SkuPriceDetails"
+    },
+    {
+      "rule_id": "CAU-SubAccountType-C-001-M",
+      "must_satisfy": "SubAccountType MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-SubAccountType-C-001-M failed [Upstream dependency failed: CAU-SubAccountType-C-002-M, CAU-SubAccountType-C-002-M]",
+      "reason": "",
+      "column": "SubAccountType"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetails-C-002-M",
+      "must_satisfy": "AllocatedMethodDetails MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetails-C-002-M failed [Upstream dependency failed: CAU-AllocatedMethodDetails-C-001-M, CAU-AllocatedMethodDetails-C-001-M, CAU-AllocatedMethodDetails-C-007-C, CAU-AllocatedMethodDetails-C-007-C]",
+      "reason": "",
+      "column": "AllocatedMethodDetails"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodId-C-002-M",
+      "must_satisfy": "AllocatedMethodId MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodId-C-002-M failed [Upstream dependency failed: CAU-AllocatedMethodId-C-001-M, CAU-AllocatedMethodId-C-001-M]",
+      "reason": "",
+      "column": "AllocatedMethodId"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceId-C-002-M",
+      "must_satisfy": "AllocatedResourceId MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedResourceId-C-002-M failed [Upstream dependency failed: CAU-AllocatedResourceId-C-001-M, CAU-AllocatedResourceId-C-001-M]",
+      "reason": "",
+      "column": "AllocatedResourceId"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceName-C-002-M",
+      "must_satisfy": "AllocatedResourceName MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedResourceName-C-002-M failed [Upstream dependency failed: CAU-AllocatedResourceName-C-001-M, CAU-AllocatedResourceName-C-001-M, CAU-AllocatedResourceName-C-003-C, CAU-AllocatedResourceName-C-003-C]",
+      "reason": "",
+      "column": "AllocatedResourceName"
+    },
+    {
+      "rule_id": "CAU-BillingAccountType-C-002-M",
+      "must_satisfy": "BillingAccountType MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-BillingAccountType-C-002-M failed [Upstream dependency failed: CAU-BillingAccountType-C-001-M, CAU-BillingAccountType-C-001-M, CAU-BillingAccountType-C-003-C, CAU-BillingAccountType-C-003-C]",
+      "reason": "",
+      "column": "BillingAccountType"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationId-C-002-M",
+      "must_satisfy": "CapacityReservationId MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-CapacityReservationId-C-002-M failed [Upstream dependency failed: CAU-CapacityReservationId-C-001-M, CAU-CapacityReservationId-C-001-M, CAU-CapacityReservationId-C-003-C, CAU-CapacityReservationId-C-003-C]",
+      "reason": "",
+      "column": "CapacityReservationId"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountQuantity-C-002-M",
+      "must_satisfy": "CommitmentDiscountQuantity MUST conform to NumericFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountQuantity-C-002-M failed [Upstream dependency failed: CAU-CommitmentDiscountQuantity-C-001-M, CAU-CommitmentDiscountQuantity-C-001-M]",
+      "reason": "",
+      "column": "CommitmentDiscountQuantity"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountUnit-C-002-M",
+      "must_satisfy": "CommitmentDiscountUnit MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountUnit-C-002-M failed [Upstream dependency failed: CAU-CommitmentDiscountUnit-C-001-M, CAU-CommitmentDiscountUnit-C-001-M, CAU-CommitmentDiscountUnit-C-003-O, CAU-CommitmentDiscountUnit-C-003-O]",
+      "reason": "",
+      "column": "CommitmentDiscountUnit"
+    },
+    {
+      "rule_id": "CAU-HostProviderName-C-002-M",
+      "must_satisfy": "HostProviderName MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-HostProviderName-C-002-M failed [Upstream dependency failed: CAU-CostAndUsage-D-075-M - required column not present]",
+      "reason": "",
+      "column": "HostProviderName"
+    },
+    {
+      "rule_id": "CAU-InvoiceId-C-002-M",
+      "must_satisfy": "InvoiceId MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-InvoiceId-C-002-M failed [Upstream dependency failed: CAU-CostAndUsage-D-033-O (missing column), CAU-InvoiceId-C-001-M, CAU-InvoiceId-C-001-M]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "CAU-PricingCurrency-C-002-M",
+      "must_satisfy": "PricingCurrency MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrency-C-002-M failed [Upstream dependency failed: CAU-PricingCurrency-C-001-M, CAU-PricingCurrency-C-001-M, CAU-PricingCurrency-C-003-M, CAU-PricingCurrency-C-003-M, CAU-PricingCurrency-C-004-M, CAU-PricingCurrency-C-004-M]",
+      "reason": "",
+      "column": "PricingCurrency"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-002-M",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice MUST conform to NumericFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyContractedUnitPrice-C-002-M failed [Upstream dependency failed: CAU-PricingCurrencyContractedUnitPrice-C-001-M, CAU-PricingCurrencyContractedUnitPrice-C-001-M, CAU-PricingCurrencyContractedUnitPrice-C-003-M, CAU-PricingCurrencyContractedUnitPrice-C-003-M]",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyEffectiveCost-C-002-M",
+      "must_satisfy": "PricingCurrencyEffectiveCost MUST conform to NumericFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyEffectiveCost-C-002-M failed [Upstream dependency failed: CAU-PricingCurrencyEffectiveCost-C-001-M, CAU-PricingCurrencyEffectiveCost-C-001-M, CAU-PricingCurrencyEffectiveCost-C-003-M, CAU-PricingCurrencyEffectiveCost-C-003-M, CAU-PricingCurrencyEffectiveCost-C-004-M, CAU-PricingCurrencyEffectiveCost-C-004-M]",
+      "reason": "",
+      "column": "PricingCurrencyEffectiveCost"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-002-M",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST conform to NumericFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-002-M failed [Upstream dependency failed: CAU-PricingCurrencyListUnitPrice-C-001-M, CAU-PricingCurrencyListUnitPrice-C-001-M, CAU-PricingCurrencyListUnitPrice-C-003-M, CAU-PricingCurrencyListUnitPrice-C-003-M, CAU-PricingCurrencyListUnitPrice-C-007-C, CAU-PricingCurrencyListUnitPrice-C-007-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ServiceProviderName-C-002-M",
+      "must_satisfy": "ServiceProviderName MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ServiceProviderName-C-002-M failed [Upstream dependency failed: CAU-CostAndUsage-D-076-M - required column not present]",
+      "reason": "",
+      "column": "ServiceProviderName"
+    },
+    {
+      "rule_id": "CAU-ServiceSubcategory-C-002-M",
+      "must_satisfy": "ServiceSubcategory MUST NOT be null.",
+      "violations": 1,
+      "message": "Validation rule CAU-ServiceSubcategory-C-002-M failed [Upstream dependency failed: CAU-CostAndUsage-D-042-O - required column not present]",
+      "reason": "",
+      "column": "ServiceSubcategory"
+    },
+    {
+      "rule_id": "CAU-SkuMeter-C-002-M",
+      "must_satisfy": "SkuMeter MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-SkuMeter-C-002-M failed [Upstream dependency failed: CAU-SkuMeter-C-001-M, CAU-SkuMeter-C-001-M, CAU-SkuMeter-C-003-C, CAU-SkuMeter-C-003-C]",
+      "reason": "",
+      "column": "SkuMeter"
+    },
+    {
+      "rule_id": "CAU-SubAccountType-C-002-M",
+      "must_satisfy": "SubAccountType MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-SubAccountType-C-002-M failed [Upstream dependency failed: CAU-SubAccountType-C-001-M, CAU-SubAccountType-C-001-M]",
+      "reason": "",
+      "column": "SubAccountType"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountUnit-C-003-O",
+      "must_satisfy": "CommitmentDiscountUnit SHOULD conform to UnitFormat requirements.",
+      "violations": 1,
+      "message": "Column 'CommitmentDiscountUnit' values SHOULD follow the FOCUS Unit Format specification. [Upstream dependency failed: CAU-CommitmentDiscountUnit-C-001-M, CAU-CommitmentDiscountUnit-C-001-M, CAU-CommitmentDiscountUnit-C-002-M, CAU-CommitmentDiscountUnit-C-002-M]",
+      "reason": "",
+      "column": "CommitmentDiscountUnit"
+    },
+    {
+      "rule_id": "CAU-ConsumedUnit-C-003-O",
+      "must_satisfy": "ConsumedUnit SHOULD conform to UnitFormat requirements.",
+      "violations": 9,
+      "message": "Column 'ConsumedUnit' contains values that do not match FOCUS Unit Format specification",
+      "reason": "",
+      "column": "ConsumedUnit"
+    },
+    {
+      "rule_id": "CAU-ContractedCost-C-003-M",
+      "must_satisfy": "ContractedCost MUST NOT be null.",
+      "violations": 7,
+      "message": "ContractedCost MUST NOT be NULL. [Upstream dependency failed: CAU-ContractedCost-C-004-M, CAU-ContractedCost-C-004-M, CAU-ContractedCost-C-011-C, CAU-ContractedCost-C-011-C]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "CAU-PricingCurrency-C-003-M",
+      "must_satisfy": "PricingCurrency MUST conform to CurrencyFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrency-C-003-M failed [Upstream dependency failed: CAU-PricingCurrency-C-001-M, CAU-PricingCurrency-C-001-M, CAU-PricingCurrency-C-002-M, CAU-PricingCurrency-C-002-M, CAU-PricingCurrency-C-004-M, CAU-PricingCurrency-C-004-M]",
+      "reason": "",
+      "column": "PricingCurrency"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyEffectiveCost-C-003-M",
+      "must_satisfy": "PricingCurrencyEffectiveCost MUST NOT be null.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyEffectiveCost-C-003-M failed [Upstream dependency failed: CAU-PricingCurrencyEffectiveCost-C-001-M, CAU-PricingCurrencyEffectiveCost-C-001-M, CAU-PricingCurrencyEffectiveCost-C-002-M, CAU-PricingCurrencyEffectiveCost-C-002-M, CAU-PricingCurrencyEffectiveCost-C-004-M, CAU-PricingCurrencyEffectiveCost-C-004-M]",
+      "reason": "",
+      "column": "PricingCurrencyEffectiveCost"
+    },
+    {
+      "rule_id": "CAU-PricingUnit-C-003-O",
+      "must_satisfy": "PricingUnit SHOULD conform to UnitFormat requirements.",
+      "violations": 9,
+      "message": "Column 'PricingUnit' contains values that do not match FOCUS Unit Format specification",
+      "reason": "",
+      "column": "PricingUnit"
+    },
+    {
+      "rule_id": "CAU-ServiceProviderName-C-003-M",
+      "must_satisfy": "ServiceProviderName MUST NOT be null.",
+      "violations": 1,
+      "message": "Validation rule CAU-ServiceProviderName-C-003-M failed [Upstream dependency failed: CAU-CostAndUsage-D-076-M - required column not present]",
+      "reason": "",
+      "column": "ServiceProviderName"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceName-C-004-C",
+      "must_satisfy": "AllocatedResourceName MUST be null when AllocatedResourceId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedResourceName-C-004-C failed [Upstream dependency failed: CAU-AllocatedResourceName-C-005-C, CAU-AllocatedResourceName-C-005-C]",
+      "reason": "",
+      "column": "AllocatedResourceName"
+    },
+    {
+      "rule_id": "CAU-BillingAccountType-C-004-C",
+      "must_satisfy": "BillingAccountType MUST be null when BillingAccountId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-BillingAccountType-C-004-C failed [Upstream dependency failed: CAU-BillingAccountType-C-005-C, CAU-BillingAccountType-C-005-C]",
+      "reason": "",
+      "column": "BillingAccountType"
+    },
+    {
+      "rule_id": "CAU-ConsumedQuantity-C-004-C",
+      "must_satisfy": "ConsumedQuantity MUST be null when ChargeCategory is not \"Usage\", or when ChargeCategory is \"Usage\" and CommitmentDiscountStatus is \"Unused\".",
+      "violations": 2,
+      "message": "ConsumedQuantity MUST be NULL.",
+      "reason": "",
+      "column": "ConsumedQuantity"
+    },
+    {
+      "rule_id": "CAU-ContractedCost-C-004-M",
+      "must_satisfy": "ContractedCost MUST be a valid decimal value.",
+      "violations": 7,
+      "message": "ContractedCost MUST NOT be NULL. [Upstream dependency failed: CAU-ContractedCost-C-003-M, CAU-ContractedCost-C-003-M, CAU-ContractedCost-C-011-C, CAU-ContractedCost-C-011-C]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "CAU-PricingCurrency-C-004-M",
+      "must_satisfy": "PricingCurrency MUST NOT be null.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrency-C-004-M failed [Upstream dependency failed: CAU-PricingCurrency-C-001-M, CAU-PricingCurrency-C-001-M, CAU-PricingCurrency-C-002-M, CAU-PricingCurrency-C-002-M, CAU-PricingCurrency-C-003-M, CAU-PricingCurrency-C-003-M]",
+      "reason": "",
+      "column": "PricingCurrency"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyEffectiveCost-C-004-M",
+      "must_satisfy": "PricingCurrencyEffectiveCost MUST be a valid decimal value.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyEffectiveCost-C-004-M failed [Upstream dependency failed: CAU-PricingCurrencyEffectiveCost-C-001-M, CAU-PricingCurrencyEffectiveCost-C-001-M, CAU-PricingCurrencyEffectiveCost-C-002-M, CAU-PricingCurrencyEffectiveCost-C-002-M, CAU-PricingCurrencyEffectiveCost-C-003-M, CAU-PricingCurrencyEffectiveCost-C-003-M]",
+      "reason": "",
+      "column": "PricingCurrencyEffectiveCost"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-004-C",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST be null when ChargeCategory is \"Tax\".",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-004-C failed [Upstream dependency failed: CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-011-C, CAU-PricingCurrencyListUnitPrice-C-011-C, CAU-PricingCurrencyListUnitPrice-C-012-C, CAU-PricingCurrencyListUnitPrice-C-012-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-SkuMeter-C-004-C",
+      "must_satisfy": "SkuMeter MUST be null when SkuId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-SkuMeter-C-004-C failed [Upstream dependency failed: CAU-SkuMeter-C-005-C, CAU-SkuMeter-C-005-C]",
+      "reason": "",
+      "column": "SkuMeter"
+    },
+    {
+      "rule_id": "CAU-SkuPriceDetails-C-004-C",
+      "must_satisfy": "SkuPriceDetails MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-SkuPriceDetails-C-004-C failed",
+      "reason": "",
+      "column": "SkuPriceDetails"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceName-C-005-C",
+      "must_satisfy": "AllocatedResourceName MUST NOT be null when AllocatedResourceId is not null.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedResourceName-C-005-C failed [Upstream dependency failed: CAU-AllocatedResourceName-C-004-C, CAU-AllocatedResourceName-C-004-C]",
+      "reason": "",
+      "column": "AllocatedResourceName"
+    },
+    {
+      "rule_id": "CAU-BillingAccountType-C-005-C",
+      "must_satisfy": "BillingAccountType MUST NOT be null when BillingAccountId is not null.",
+      "violations": 1,
+      "message": "Validation rule CAU-BillingAccountType-C-005-C failed [Upstream dependency failed: CAU-BillingAccountType-C-004-C, CAU-BillingAccountType-C-004-C]",
+      "reason": "",
+      "column": "BillingAccountType"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountQuantity-C-005-C",
+      "must_satisfy": "CommitmentDiscountQuantity MUST NOT be null when ChargeClass is not \"Correction\".",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountQuantity-C-005-C failed",
+      "reason": "",
+      "column": "CommitmentDiscountQuantity"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-005-C",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST NOT be null when ChargeCategory is \"Usage\" or \"Purchase\" and ChargeClass is not \"Correction\".",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-005-C failed [Upstream dependency failed: CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-011-C, CAU-PricingCurrencyListUnitPrice-C-011-C, CAU-PricingCurrencyListUnitPrice-C-012-C, CAU-PricingCurrencyListUnitPrice-C-012-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ServiceName-C-005-C",
+      "must_satisfy": "ServiceName MUST have one and only one ServiceCategory that best aligns with its primary purpose, except when no suitable ServiceCategory is available.",
+      "violations": 1,
+      "message": "For each ServiceName, there MUST be exactly 1 distinct ServiceCategory values.",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "CAU-SkuMeter-C-005-C",
+      "must_satisfy": "SkuMeter SHOULD NOT be null when SkuId is not null.",
+      "violations": 1,
+      "message": "Validation rule CAU-SkuMeter-C-005-C failed [Upstream dependency failed: CAU-SkuMeter-C-004-C, CAU-SkuMeter-C-004-C]",
+      "reason": "",
+      "column": "SkuMeter"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountQuantity-C-007-C",
+      "must_satisfy": "CommitmentDiscountQuantity MUST be null in all other cases.",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountQuantity-C-007-C failed [Upstream dependency failed: CAU-CommitmentDiscountQuantity-C-016-C, CAU-CommitmentDiscountQuantity-C-016-C]",
+      "reason": "",
+      "column": "CommitmentDiscountQuantity"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-008-M",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST be a non-negative decimal value.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-008-M failed",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ServiceName-C-008-C",
+      "must_satisfy": "ServiceName SHOULD have one and only one ServiceSubcategory that best aligns with its primary purpose, except when no suitable ServiceSubcategory is available.",
+      "violations": 1,
+      "message": "Validation rule CAU-ServiceName-C-008-C failed [Upstream dependency failed: CAU-ServiceSubcategory-C-000-O]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "CAU-SkuPriceId-C-008-M",
+      "must_satisfy": "SkuPriceId MUST have one and only one parent SkuId.",
+      "violations": 1,
+      "message": "For each SkuPriceId, there MUST be exactly 1 distinct SkuId values.",
+      "reason": "",
+      "column": "SkuPriceId"
+    },
+    {
+      "rule_id": "CAU-ContractedUnitPrice-C-009-M",
+      "must_satisfy": "ContractedUnitPrice MUST be a non-negative decimal value.",
+      "violations": 1,
+      "message": "ContractedUnitPrice MUST be greater than or equal to 0.",
+      "reason": "",
+      "column": "ContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ContractedCost-C-011-C",
+      "must_satisfy": "ContractedCost MUST equal the product of ContractedUnitPrice and PricingQuantity when ContractedUnitPrice is not null and PricingQuantity is not null.",
+      "violations": 43,
+      "message": "Expected ContractedCost = ContractedUnitPrice * PricingQuantity [Upstream dependency failed: CAU-ContractedCost-C-003-M, CAU-ContractedCost-C-003-M, CAU-ContractedCost-C-004-M, CAU-ContractedCost-C-004-M]",
+      "reason": "",
+      "column": "ContractedCost"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-011-C",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-011-C failed [Upstream dependency failed: CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-012-C, CAU-PricingCurrencyListUnitPrice-C-012-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-012-C",
+      "must_satisfy": "PricingCurrencyListUnitPrice MUST NOT be null when SkuPriceId is not null.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyListUnitPrice-C-012-C failed [Upstream dependency failed: CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-011-C, CAU-PricingCurrencyListUnitPrice-C-011-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ContractedUnitPrice-C-013-C",
+      "must_satisfy": "ContractedCost MUST equal the product of ContractedUnitPrice and PricingQuantity when ContractedUnitPrice is not null and PricingQuantity is not null.",
+      "violations": 43,
+      "message": "Expected ContractedCost = ContractedUnitPrice * PricingQuantity [Upstream dependency failed: CAU-ContractedUnitPrice-C-008-C, CAU-ContractedUnitPrice-C-008-C, CAU-ContractedUnitPrice-C-004-M, CAU-ContractedUnitPrice-C-004-M]",
+      "reason": "",
+      "column": "ContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-001-M",
+      "must_satisfy": "AllocatedMethodDetails MUST have a top-level key \"Elements\" which contains an array.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-001-M failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-019-O, CAU-AllocatedMethodDetailsObject-O-019-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-001-M",
+      "must_satisfy": "ContractApplied MUST have a top-level key \"Elements\" which contains an array.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-001-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-003-M, CAU-ContractAppliedObject-O-003-M, CAU-ContractAppliedObject-O-004-M, CAU-ContractAppliedObject-O-004-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-017-C, CAU-ContractAppliedObject-O-017-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-059-M, CAU-ContractAppliedObject-O-059-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-002-M",
+      "must_satisfy": "Each item in \"Elements\" MUST be an object.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-002-M failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-019-O, CAU-AllocatedMethodDetailsObject-O-019-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-003-M",
+      "must_satisfy": "Objects inside \"Elements\" MUST conform to KeyValueFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-003-M failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-019-O, CAU-AllocatedMethodDetailsObject-O-019-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-003-M",
+      "must_satisfy": "Each item in \"Elements\" MUST be an object.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-003-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-001-M, CAU-ContractAppliedObject-O-001-M, CAU-ContractAppliedObject-O-004-M, CAU-ContractAppliedObject-O-004-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-017-C, CAU-ContractAppliedObject-O-017-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-059-M, CAU-ContractAppliedObject-O-059-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-004-M",
+      "must_satisfy": "\"Elements\" objects MUST conform to KeyValueFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-004-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-001-M, CAU-ContractAppliedObject-O-001-M, CAU-ContractAppliedObject-O-003-M, CAU-ContractAppliedObject-O-003-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-017-C, CAU-ContractAppliedObject-O-017-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-059-M, CAU-ContractAppliedObject-O-059-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-007-M",
+      "must_satisfy": "\"Elements\" objects MUST contain five key-value pairs, representing \"ContractId\", \"ContractCommitmentId\", \"ContractCommitmentAppliedCost\", \"ContractCommitmentAppliedQuantity\", and \"ContractCommitmentAppliedUnit\".",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-007-M: AND failed - failed child rules: [json_path_key_exists#1, json_path_key_exists#2, json_path_key_exists#3, json_path_key_exists#4, json_path_key_exists#5]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-009-C",
+      "must_satisfy": "Allocation property keys MUST begin with the string \"x_\" unless it is a FOCUS-defined allocation property.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-009-C failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-019-O, CAU-AllocatedMethodDetailsObject-O-019-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-010-M",
+      "must_satisfy": "Contract application property custom key-value pairs MUST be prefixed with a consistent `x_` prefix to identify them as external, custom columns and distinguish them from FOCUS columns to avoid conflicts in future releases.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-010-M failed",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-012-M",
+      "must_satisfy": "\"AllocatedRatio\" MUST be included inside each \"Elements\" object.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-012-M failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-013-M, CAU-AllocatedMethodDetailsObject-O-013-M]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-013-M",
+      "must_satisfy": "Values for \"AllocatedRatio\" MUST be a decimal value compatible with NumericFormat representing the allocated charge's percentage of the origin charge.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-013-M failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-012-M (missing column), CAU-AllocatedMethodDetailsObject-O-012-M (missing column)]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-016-C",
+      "must_satisfy": "\"UsageUnit\" MUST be included inside an \"Elements\" object if \"UsageQuantity\" allocation property is included in that \"Elements\" object, otherwise \"UsageUnit\" MAY be included in each \"Elements\" object.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-016-C failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-018-O, CAU-AllocatedMethodDetailsObject-O-018-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-017-C",
+      "must_satisfy": "Contract application property keys MUST begin with the string \"x_\" unless it is a FOCUS-defined application property.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-017-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-001-M, CAU-ContractAppliedObject-O-001-M, CAU-ContractAppliedObject-O-003-M, CAU-ContractAppliedObject-O-003-M, CAU-ContractAppliedObject-O-004-M, CAU-ContractAppliedObject-O-004-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-007-M, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-009-C, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-018-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-028-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-041-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-050-M, CAU-ContractAppliedObject-O-059-M, CAU-ContractAppliedObject-O-059-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-018-O",
+      "must_satisfy": "Values for \"UsageUnit\" SHOULD conform to UnitFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-018-O failed [Upstream dependency failed: CAU-AllocatedMethodDetailsObject-O-016-C (missing column), CAU-AllocatedMethodDetailsObject-O-016-C (missing column)]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-019-C",
+      "must_satisfy": "\"ContractId\" MUST be present in an Elements object within ContractApplied when the service provider supports *contract commitments*.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-019-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-019-C, CAU-ContractAppliedObject-O-019-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-020-M",
+      "must_satisfy": "\"ContractId\" MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-020-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-019-C, CAU-ContractAppliedObject-O-019-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-021-M",
+      "must_satisfy": "Values for \"UsageQuantity\" MUST be compatible with NumericFormat.",
+      "violations": 1,
+      "message": "Validation rule CAU-AllocatedMethodDetailsObject-O-021-M failed",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-021-M",
+      "must_satisfy": "\"ContractId\" MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-021-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-019-C, CAU-ContractAppliedObject-O-019-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-029-C",
+      "must_satisfy": "\"ContractCommitmentId\" MUST be present in an Elements object within ContractApplied when the service provider supports *contract commitments*.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-029-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-029-C, CAU-ContractAppliedObject-O-029-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-030-M",
+      "must_satisfy": "\"ContractCommitmentId\" MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-030-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-029-C, CAU-ContractAppliedObject-O-029-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-031-M",
+      "must_satisfy": "\"ContractCommitmentId\" MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-031-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-029-C, CAU-ContractAppliedObject-O-029-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-038-M",
+      "must_satisfy": "\"ContractCommitmentId\" MUST have one and only one parent \"ContractId\".",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-038-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-039-C, CAU-ContractAppliedObject-O-039-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-039-C",
+      "must_satisfy": "\"ContractCommitmentId\" MUST be equal to ResourceId when ChargeCategory is \"Purchase\".",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-039-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-038-M, CAU-ContractAppliedObject-O-038-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-042-C",
+      "must_satisfy": "\"ContractCommitmentAppliedCost\" MUST be present in an Elements object within ContractApplied when the service provider associates the *charge's* value with one or more *contract commitments*.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-042-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-048-M, CAU-ContractAppliedObject-O-048-M, CAU-ContractAppliedObject-O-045-M, CAU-ContractAppliedObject-O-045-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-043-M",
+      "must_satisfy": "\"ContractCommitmentAppliedCost\" MUST be of type Decimal.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-043-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-042-C (missing column), CAU-ContractAppliedObject-O-042-C (missing column), CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-048-M, CAU-ContractAppliedObject-O-048-M, CAU-ContractAppliedObject-O-045-M, CAU-ContractAppliedObject-O-045-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-044-M",
+      "must_satisfy": "\"ContractCommitmentAppliedCost\" MUST conform to NumericFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-044-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-042-C (missing column), CAU-ContractAppliedObject-O-042-C (missing column), CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-048-M, CAU-ContractAppliedObject-O-048-M, CAU-ContractAppliedObject-O-045-M, CAU-ContractAppliedObject-O-045-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-046-C",
+      "must_satisfy": "\"ContractCommitmentAppliedCost\" MUST NOT be null when \"ContractCommitmentAppliedQuantity\" is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-046-C failed",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-048-M",
+      "must_satisfy": "\"ContractCommitmentAppliedCost\" MUST be a valid decimal value.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-048-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-042-C (missing column), CAU-ContractAppliedObject-O-042-C (missing column), CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-045-M, CAU-ContractAppliedObject-O-045-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-051-C",
+      "must_satisfy": "\"ContractCommitmentAppliedQuantity\" MUST be present in an Elements object within ContractApplied when the service provider associates the *charge's* quantity with one or more *contract commitments*.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-051-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-057-M, CAU-ContractAppliedObject-O-057-M, CAU-ContractAppliedObject-O-054-M, CAU-ContractAppliedObject-O-054-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-052-M",
+      "must_satisfy": "\"ContractCommitmentAppliedQuantity\" MUST be of type Decimal.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-052-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-051-C (missing column), CAU-ContractAppliedObject-O-051-C (missing column), CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-057-M, CAU-ContractAppliedObject-O-057-M, CAU-ContractAppliedObject-O-054-M, CAU-ContractAppliedObject-O-054-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-053-M",
+      "must_satisfy": "\"ContractCommitmentAppliedQuantity\" MUST conform to NumericFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-053-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-051-C (missing column), CAU-ContractAppliedObject-O-051-C (missing column), CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-057-M, CAU-ContractAppliedObject-O-057-M, CAU-ContractAppliedObject-O-054-M, CAU-ContractAppliedObject-O-054-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-055-C",
+      "must_satisfy": "\"ContractCommitmentAppliedQuantity\" MUST NOT be null when \"ContractCommitmentAppliedCost\" is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-055-C failed",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-057-M",
+      "must_satisfy": "\"ContractCommitmentAppliedQuantity\" MUST be a valid decimal value.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-057-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-051-C (missing column), CAU-ContractAppliedObject-O-051-C (missing column), CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-054-M, CAU-ContractAppliedObject-O-054-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-060-C",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" MUST be present in an Elements object within ContractApplied when the service provider associates the *charge's* quantity with one or more *contract commitments*.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-060-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-060-C, CAU-ContractAppliedObject-O-060-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-061-M",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" MUST be of type String.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-061-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-060-C, CAU-ContractAppliedObject-O-060-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-062-M",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" MUST conform to StringHandling requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-062-M failed [Upstream dependency failed: CAU-ContractAppliedObject-O-060-C, CAU-ContractAppliedObject-O-060-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-063-O",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" SHOULD conform to UnitFormat requirements.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-063-O failed [Upstream dependency failed: CAU-ContractAppliedObject-O-060-C, CAU-ContractAppliedObject-O-060-C - required column not present]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-065-C",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" MUST be null when \"ContractCommitmentAppliedQuantity\" is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-065-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-066-C, CAU-ContractAppliedObject-O-066-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-066-C",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" MUST NOT be null when \"ContractCommitmentAppliedQuantity\" is not null.",
+      "violations": 1,
+      "message": "Validation rule CAU-ContractAppliedObject-O-066-C failed [Upstream dependency failed: CAU-ContractAppliedObject-O-065-C, CAU-ContractAppliedObject-O-065-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ServiceProviderName-C-000-M",
+      "must_satisfy": "ServiceProviderName adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ServiceProviderName-C-000-M: AND failed - failed child rules: [CAU-ServiceProviderName-C-001-M, CAU-ServiceProviderName-C-002-M, CAU-ServiceProviderName-C-003-M]",
+      "reason": "",
+      "column": "ServiceProviderName"
+    },
+    {
+      "rule_id": "CAU-ServiceSubcategory-C-000-O",
+      "must_satisfy": "ServiceSubcategory adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ServiceSubcategory-C-000-O: AND failed - failed child rules: [CAU-ServiceSubcategory-C-001-M, CAU-ServiceSubcategory-C-002-M]",
+      "reason": "",
+      "column": "ServiceSubcategory"
+    },
+    {
+      "rule_id": "CAU-AllocatedResourceName-C-003-C",
+      "must_satisfy": "AllocatedResourceName nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-AllocatedResourceName-C-003-C: AND failed - failed child rules: [CAU-AllocatedResourceName-C-004-C, CAU-AllocatedResourceName-C-005-C]",
+      "reason": "",
+      "column": "AllocatedResourceName"
+    },
+    {
+      "rule_id": "CAU-BillingAccountType-C-003-C",
+      "must_satisfy": "BillingAccountType nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-BillingAccountType-C-003-C: AND failed - failed child rules: [CAU-BillingAccountType-C-004-C, CAU-BillingAccountType-C-005-C]",
+      "reason": "",
+      "column": "BillingAccountType"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-003-M",
+      "must_satisfy": "PricingCurrencyListUnitPrice nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-PricingCurrencyListUnitPrice-C-003-M: AND failed - failed child rules: [CAU-PricingCurrencyListUnitPrice-C-004-C, CAU-PricingCurrencyListUnitPrice-C-005-C, CAU-PricingCurrencyListUnitPrice-C-006-O, CAU-PricingCurrencyListUnitPrice-C-011-C]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-SkuMeter-C-003-C",
+      "must_satisfy": "SkuMeter nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-SkuMeter-C-003-C: AND failed - failed child rules: [CAU-SkuMeter-C-004-C, CAU-SkuMeter-C-005-C]",
+      "reason": "",
+      "column": "SkuMeter"
+    },
+    {
+      "rule_id": "CAU-SkuPriceDetails-C-003-C",
+      "must_satisfy": "SkuPriceDetails nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-SkuPriceDetails-C-003-C: AND failed - failed child rules: [CAU-SkuPriceDetails-C-004-C]",
+      "reason": "",
+      "column": "SkuPriceDetails"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationId-C-005-C",
+      "must_satisfy": "CapacityReservationId MUST NOT be null when a charge represents the unused portion of a capacity reservation.",
+      "violations": 1,
+      "message": "Validation rule CAU-CapacityReservationId-C-005-C failed",
+      "reason": "",
+      "column": "CapacityReservationId"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyListUnitPrice-C-007-C",
+      "must_satisfy": "When PricingCurrencyListUnitPrice is not null, PricingCurrencyListUnitPrice adheres to the following additional requirements:",
+      "violations": 1,
+      "message": "CAU-PricingCurrencyListUnitPrice-C-007-C: AND failed - failed child rules: [CAU-PricingCurrencyListUnitPrice-C-008-M]",
+      "reason": "",
+      "column": "PricingCurrencyListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-009-C",
+      "must_satisfy": "When custom key-value pairs within \"Elements\" objects are present:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-009-C: AND failed - failed child rules: [CAU-ContractAppliedObject-O-010-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-011-M",
+      "must_satisfy": "The \"AllocatedRatio\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-AllocatedMethodDetailsObject-O-011-M: AND failed - failed child rules: [CAU-AllocatedMethodDetailsObject-O-012-M, CAU-AllocatedMethodDetailsObject-O-013-M]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-015-M",
+      "must_satisfy": "The \"UsageUnit\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-AllocatedMethodDetailsObject-O-015-M: AND failed - failed child rules: [CAU-AllocatedMethodDetailsObject-O-016-C, CAU-AllocatedMethodDetailsObject-O-018-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-019-O",
+      "must_satisfy": "The \"UsageQuantity\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-AllocatedMethodDetailsObject-O-019-O: AND failed - failed child rules: [CAU-AllocatedMethodDetailsObject-O-021-M]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-035-C",
+      "must_satisfy": "When \"ContractCommitmentId\" is not null, \"ContractCommitmentId\" adheres to the following additional requirements:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-035-C: AND failed - failed child rules: [CAU-ContractAppliedObject-O-038-M, CAU-ContractAppliedObject-O-039-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-045-M",
+      "must_satisfy": "\"ContractCommitmentAppliedCost\" nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-045-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-046-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-054-M",
+      "must_satisfy": "\"ContractCommitmentAppliedQuantity\" nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-054-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-055-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-064-C",
+      "must_satisfy": "\"ContractCommitmentAppliedUnit\" nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-064-C: AND failed - failed child rules: [CAU-ContractAppliedObject-O-065-C, CAU-ContractAppliedObject-O-066-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-HostProviderName-C-000-M",
+      "must_satisfy": "HostProviderName adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-HostProviderName-C-000-M: AND failed - failed child rules: [CAU-HostProviderName-C-001-M, CAU-HostProviderName-C-002-M]",
+      "reason": "",
+      "column": "HostProviderName"
+    },
+    {
+      "rule_id": "CAU-PricingUnit-C-000-M",
+      "must_satisfy": "PricingUnit adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-PricingUnit-C-000-M: AND failed - failed child rules: [CAU-PricingUnit-C-003-O]",
+      "reason": "",
+      "column": "PricingUnit"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetailsObject-O-000-C",
+      "must_satisfy": "When AllocatedMethodDetails is not null, the JsonObjectFormat for AllocatedMethodDetails adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-AllocatedMethodDetailsObject-O-000-C: AND failed - failed child rules: [CAU-AllocatedMethodDetailsObject-O-001-M, CAU-AllocatedMethodDetailsObject-O-002-M, CAU-AllocatedMethodDetailsObject-O-003-M, CAU-AllocatedMethodDetailsObject-O-009-C, CAU-AllocatedMethodDetailsObject-O-011-M, CAU-AllocatedMethodDetailsObject-O-015-M, CAU-AllocatedMethodDetailsObject-O-019-O]",
+      "reason": "",
+      "column": "AllocatedMethodDetailsObject"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationId-C-003-C",
+      "must_satisfy": "CapacityReservationId nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-CapacityReservationId-C-003-C: AND failed - failed child rules: [CAU-CapacityReservationId-C-005-C]",
+      "reason": "",
+      "column": "CapacityReservationId"
+    },
+    {
+      "rule_id": "CAU-ServiceName-C-004-C",
+      "must_satisfy": "The relationship between ServiceName and ServiceCategory is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ServiceName-C-004-C: AND failed - failed child rules: [CAU-ServiceName-C-005-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "CAU-ServiceName-C-007-C",
+      "must_satisfy": "The relationship between ServiceName and ServiceSubcategory is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ServiceName-C-007-C: AND failed - failed child rules: [CAU-ServiceName-C-008-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-018-M",
+      "must_satisfy": "The \"ContractId\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-018-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-019-C, CAU-ContractAppliedObject-O-020-M, CAU-ContractAppliedObject-O-021-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-028-M",
+      "must_satisfy": "The \"ContractCommitmentId\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-028-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-029-C, CAU-ContractAppliedObject-O-030-M, CAU-ContractAppliedObject-O-031-M, CAU-ContractAppliedObject-O-035-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-041-M",
+      "must_satisfy": "The \"ContractCommitmentAppliedCost\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-041-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-042-C, CAU-ContractAppliedObject-O-043-M, CAU-ContractAppliedObject-O-044-M, CAU-ContractAppliedObject-O-045-M, CAU-ContractAppliedObject-O-048-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-050-M",
+      "must_satisfy": "The \"ContractCommitmentAppliedQuantity\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-050-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-051-C, CAU-ContractAppliedObject-O-052-M, CAU-ContractAppliedObject-O-053-M, CAU-ContractAppliedObject-O-054-M, CAU-ContractAppliedObject-O-057-M]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-ContractAppliedObject-O-059-M",
+      "must_satisfy": "The \"ContractCommitmentAppliedUnit\" property adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ContractAppliedObject-O-059-M: AND failed - failed child rules: [CAU-ContractAppliedObject-O-060-C, CAU-ContractAppliedObject-O-061-M, CAU-ContractAppliedObject-O-062-M, CAU-ContractAppliedObject-O-063-O, CAU-ContractAppliedObject-O-064-C]",
+      "reason": "",
+      "column": "ContractAppliedObject"
+    },
+    {
+      "rule_id": "CAU-InvoiceId-C-000-O",
+      "must_satisfy": "InvoiceId adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-InvoiceId-C-000-O: AND failed - failed child rules: [CAU-InvoiceId-C-001-M, CAU-InvoiceId-C-002-M]",
+      "reason": "",
+      "column": "InvoiceId"
+    },
+    {
+      "rule_id": "CAU-ServiceName-C-000-M",
+      "must_satisfy": "ServiceName adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ServiceName-C-000-M: AND failed - failed child rules: [CAU-ServiceName-C-004-C, CAU-ServiceName-C-007-C]",
+      "reason": "",
+      "column": "ServiceName"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationStatus-C-003-C",
+      "must_satisfy": "CapacityReservationStatus MUST be null when CapacityReservationId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-CapacityReservationStatus-C-003-C failed [Upstream dependency failed: CAU-CapacityReservationStatus-C-004-C, CAU-CapacityReservationStatus-C-004-C]",
+      "reason": "",
+      "column": "CapacityReservationStatus"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationStatus-C-004-C",
+      "must_satisfy": "CapacityReservationStatus MUST NOT be null when CapacityReservationId is not null and ChargeCategory is \"Usage\".",
+      "violations": 1,
+      "message": "Validation rule CAU-CapacityReservationStatus-C-004-C failed [Upstream dependency failed: CAU-CapacityReservationStatus-C-003-C, CAU-CapacityReservationStatus-C-003-C]",
+      "reason": "",
+      "column": "CapacityReservationStatus"
+    },
+    {
+      "rule_id": "CAU-AllocatedMethodDetails-C-007-C",
+      "must_satisfy": "AllocatedMethodDetailsObject MUST adhere to the following requirements:",
+      "violations": 1,
+      "message": "CAU-AllocatedMethodDetails-C-007-C: AND failed - failed child rules: [CAU-AllocatedMethodDetailsObject-O-000-C]",
+      "reason": "",
+      "column": "AllocatedMethodDetails"
+    },
+    {
+      "rule_id": "CAU-ContractedUnitPrice-C-008-C",
+      "must_satisfy": "When ContractedUnitPrice is not null, ContractedUnitPrice adheres to the following additional requirements:",
+      "violations": 1,
+      "message": "CAU-ContractedUnitPrice-C-008-C: AND failed - failed child rules: [CAU-ContractedUnitPrice-C-009-M]",
+      "reason": "",
+      "column": "ContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-CapacityReservationStatus-C-002-C",
+      "must_satisfy": "CapacityReservationStatus nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-CapacityReservationStatus-C-002-C: AND failed - failed child rules: [CAU-CapacityReservationStatus-C-003-C, CAU-CapacityReservationStatus-C-004-C]",
+      "reason": "",
+      "column": "CapacityReservationStatus"
+    },
+    {
+      "rule_id": "CAU-ConsumedQuantity-C-003-C",
+      "must_satisfy": "ConsumedQuantity nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ConsumedQuantity-C-003-C: AND failed - failed child rules: [CAU-ConsumedQuantity-C-005-C]",
+      "reason": "",
+      "column": "ConsumedQuantity"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-011-C",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyContractedUnitPrice-C-011-C failed [Upstream dependency failed: CAU-PricingCurrencyContractedUnitPrice-C-012-C, CAU-PricingCurrencyContractedUnitPrice-C-012-C]",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingQuantity-C-011-C",
+      "must_satisfy": "PricingQuantity MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "PricingQuantity MUST be NULL.",
+      "reason": "",
+      "column": "PricingQuantity"
+    },
+    {
+      "rule_id": "CAU-PricingCategory-C-012-C",
+      "must_satisfy": "PricingCategory MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "PricingCategory MUST be NULL.",
+      "reason": "",
+      "column": "PricingCategory"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-012-C",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice MUST NOT be null when SkuPriceId is not null.",
+      "violations": 1,
+      "message": "Validation rule CAU-PricingCurrencyContractedUnitPrice-C-012-C failed [Upstream dependency failed: CAU-PricingCurrencyContractedUnitPrice-C-011-C, CAU-PricingCurrencyContractedUnitPrice-C-011-C]",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ContractedUnitPrice-C-014-C",
+      "must_satisfy": "ContractedUnitPrice MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "ContractedUnitPrice MUST be NULL. [Upstream dependency failed: CAU-ContractedUnitPrice-C-015-C, CAU-ContractedUnitPrice-C-015-C]",
+      "reason": "",
+      "column": "ContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ContractedUnitPrice-C-015-C",
+      "must_satisfy": "ContractedUnitPrice MUST NOT be null when SkuPriceId is not null.",
+      "violations": 7,
+      "message": "ContractedUnitPrice MUST NOT be NULL. [Upstream dependency failed: CAU-ContractedUnitPrice-C-014-C, CAU-ContractedUnitPrice-C-014-C]",
+      "reason": "",
+      "column": "ContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-CommitmentDiscountQuantity-C-016-C",
+      "must_satisfy": "CommitmentDiscountQuantity MUST be null when SkuPriceId is null.",
+      "violations": 1,
+      "message": "Validation rule CAU-CommitmentDiscountQuantity-C-016-C failed [Upstream dependency failed: CAU-CommitmentDiscountQuantity-C-007-C, CAU-CommitmentDiscountQuantity-C-007-C]",
+      "reason": "",
+      "column": "CommitmentDiscountQuantity"
+    },
+    {
+      "rule_id": "CAU-PricingCategory-C-002-M",
+      "must_satisfy": "PricingCategory nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-PricingCategory-C-002-M: AND failed - failed child rules: [CAU-PricingCategory-C-012-C]",
+      "reason": "",
+      "column": "PricingCategory"
+    },
+    {
+      "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-003-M",
+      "must_satisfy": "PricingCurrencyContractedUnitPrice nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-PricingCurrencyContractedUnitPrice-C-003-M: AND failed - failed child rules: [CAU-PricingCurrencyContractedUnitPrice-C-011-C, CAU-PricingCurrencyContractedUnitPrice-C-012-C]",
+      "reason": "",
+      "column": "PricingCurrencyContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingQuantity-C-003-M",
+      "must_satisfy": "PricingQuantity nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-PricingQuantity-C-003-M: AND failed - failed child rules: [CAU-PricingQuantity-C-011-C]",
+      "reason": "",
+      "column": "PricingQuantity"
+    },
+    {
+      "rule_id": "CAU-ContractedUnitPrice-C-004-M",
+      "must_satisfy": "ContractedUnitPrice nullability is defined as follows:",
+      "violations": 1,
+      "message": "CAU-ContractedUnitPrice-C-004-M: AND failed - failed child rules: [CAU-ContractedUnitPrice-C-014-C, CAU-ContractedUnitPrice-C-015-C]",
+      "reason": "",
+      "column": "ContractedUnitPrice"
+    },
+    {
+      "rule_id": "CAU-PricingQuantity-C-000-M",
+      "must_satisfy": "PricingQuantity adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-PricingQuantity-C-000-M: AND failed - failed child rules: [CAU-PricingQuantity-C-003-M]",
+      "reason": "",
+      "column": "PricingQuantity"
+    },
+    {
+      "rule_id": "CAU-ListCost-C-011-C",
+      "must_satisfy": "ListCost MUST equal the product of ListUnitPrice and PricingQuantity when ListUnitPrice is not null and PricingQuantity is not null.",
+      "violations": 519,
+      "message": "Expected ListCost = ListUnitPrice * PricingQuantity",
+      "reason": "",
+      "column": "ListCost"
+    },
+    {
+      "rule_id": "CAU-ListUnitPrice-C-014-C",
+      "must_satisfy": "ListCost MUST equal the product of ListUnitPrice and PricingQuantity when ListUnitPrice is not null and PricingQuantity is not null.",
+      "violations": 519,
+      "message": "Expected ListCost = ListUnitPrice * PricingQuantity",
+      "reason": "",
+      "column": "ListUnitPrice"
+    },
+    {
+      "rule_id": "CAU-ContractedCost-C-000-M",
+      "must_satisfy": "ContractedCost adheres to the following requirements:",
+      "violations": 1,
+      "message": "CAU-ContractedCost-C-000-M: AND failed - failed child rules: [CAU-ContractedCost-C-003-M, CAU-ContractedCost-C-004-M, CAU-ContractedCost-C-011-C]",
+      "reason": "",
+      "column": "ContractedCost"
+    }
+  ],
+  "error": null,
+  "compliant": false
+}

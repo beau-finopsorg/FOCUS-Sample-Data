@@ -1,0 +1,13 @@
+{
+  "version": "1.4",
+  "model_version": "unknown",
+  "data_file": "FOCUS-1.4/focus_sample.csv",
+  "row_count": 0,
+  "total": 0,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 0,
+  "failures": [],
+  "error": "ValueError: Active-edge cycle detected; blocked nodes: ['CAU-CostAndUsage-D-000-M', 'CAU-CostAndUsage-D-002-M', 'CAU-CommitmentDiscountUnit-C-000-C', 'CAU-CommitmentDiscountUnit-C-004-C', 'CAU-CommitmentDiscountUnit-C-005-C', 'CAU-CommitmentDiscountQuantity-C-000-C', 'CAU-CommitmentDiscountQuantity-C-010-C', 'CAU-CommitmentDiscountQuantity-C-011-C', 'CAU-CommitmentDiscountQuantity-C-012-C', 'CAU-CommitmentDiscountQuantity-C-013-C', 'CAU-CommitmentDiscountQuantity-C-014-C', 'CAU-CommitmentDiscountQuantity-C-015-C', 'CAU-CommitmentDiscountUnit-C-006-C']",
+  "compliant": false
+}

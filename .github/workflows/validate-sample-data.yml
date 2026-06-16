@@ -1,0 +1,72 @@
+name: Validate sample data
+
+# Validates every FOCUS-<version>/focus_sample.csv against its FOCUS version's
+# requirements model on each push / PR. Fails the build on real (non-upstream)
+# compliance violations.
+
+on:
+  push:
+    branches: ["main", "feat/**"]
+    paths:
+      - "FOCUS-*/**"
+      - "tooling/**"
+      - ".github/workflows/validate-sample-data.yml"
+  pull_request:
+    paths:
+      - "FOCUS-*/**"
+      - "tooling/**"
+  workflow_dispatch:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run focusgen unit tests
+        run: python tooling/tests/test_focusgen.py
+
+  validate:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["1.2", "1.3", "1.4"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install tooling
+        run: pip install -r tooling/requirements.txt
+
+      - name: Validate FOCUS-${{ matrix.version }} sample
+        id: validate
+        working-directory: tooling
+        run: |
+          DATA="../FOCUS-${{ matrix.version }}/focus_sample.csv"
+          if [ ! -f "$DATA" ]; then
+            echo "No sample file for ${{ matrix.version }} ($DATA); skipping."
+            exit 0
+          fi
+          python -m focusgen validate \
+            --version ${{ matrix.version }} \
+            --data-file "$DATA" \
+            --json > "report-${{ matrix.version }}.json"
+          python -m focusgen validate \
+            --version ${{ matrix.version }} \
+            --data-file "$DATA"
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report-${{ matrix.version }}
+          path: tooling/report-${{ matrix.version }}.json
+          if-no-files-found: ignore

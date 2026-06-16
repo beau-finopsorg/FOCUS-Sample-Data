@@ -1,0 +1,21 @@
+# Runtime dependencies for the FOCUS sample-data tooling (focusgen).
+#
+# The generator itself only needs the standard library. The validation pipeline
+# and feedback loop wrap the FOCUS validator, which pulls in the data/SQL stack.
+
+# FOCUS validator (validation engine). Requires Python >= 3.12.
+focus_validator @ git+https://github.com/finopsfoundation/focus_validator.git@main
+
+# Pinned transitive stack the validator relies on (kept explicit for CI caching).
+duckdb>=1.4
+pandas>=2
+polars>=1.0
+pandera>=0.26
+pyarrow
+sqlglot>=27
+pydantic>=2
+multimethod
+pyyaml
+pytz
+requests
+tabulate

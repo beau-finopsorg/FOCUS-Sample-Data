@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "model_version": "1.2.0.3",
+  "data_file": "FOCUS-1.2/focus_sample.csv",
+  "row_count": 1000,
+  "total": 578,
+  "passed": 136,
+  "failed": 1,
+  "skipped": 441,
+  "failures": [
+    {
+      "rule_id": "InvoiceId-C-005-C",
+      "must_satisfy": "InvoiceId MUST NOT be null when the charge is associated with either an issued invoice or a pre-generated provisional invoice.",
+      "violations": 1000,
+      "message": "InvoiceId MUST NOT be NULL.",
+      "reason": "",
+      "column": "InvoiceId"
+    }
+  ],
+  "error": null,
+  "compliant": false
+}
