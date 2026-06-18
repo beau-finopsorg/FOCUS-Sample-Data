@@ -20,6 +20,7 @@ from __future__ import annotations
 import csv
 import json
 import random
+import re
 import zlib
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -118,7 +119,13 @@ class Generator:
         if not self.providers:
             raise ValueError(f"No valid providers among {keys}")
         self.overrides = config.overrides or {}
+        if not re.fullmatch(r"\d{4}-\d{2}", config.period or ""):
+            raise ValueError(
+                f"Invalid --period {config.period!r}; expected YYYY-MM (e.g. 2024-09)"
+            )
         y, m = (int(p) for p in config.period.split("-"))
+        if not 1 <= m <= 12:
+            raise ValueError(f"Invalid month in --period {config.period!r}; must be 01-12")
         self.billing_start = datetime(y, m, 1, tzinfo=timezone.utc)
         self.billing_end = (datetime(y + 1, 1, 1, tzinfo=timezone.utc) if m == 12
                             else datetime(y, m + 1, 1, tzinfo=timezone.utc))
@@ -299,6 +306,10 @@ class Generator:
 
         if is_tax:
             svc_name, svc_cat, svc_sub, res_type, unit = "Tax", "Other", "Other", None, None
+            # Tax has no unit price or quantity, so the cost columns cannot be a
+            # unit-price * quantity product. Keep them coherent and non-null
+            # (cost columns MUST NOT be null) by setting them to the tax amount.
+            list_cost = contracted_cost = effective_cost = billed_cost
 
         # commitment-discount block: coherent and mostly absent (never on tax)
         cd = self._commitment_block(rng, pricing_category) if not is_tax else self._commitment_block(rng, "none", force_empty=True)
@@ -364,8 +375,9 @@ class Generator:
             # costs
             "BilledCost": billed_cost,
             "EffectiveCost": effective_cost,
-            "ListCost": list_cost if not is_tax else None,
-            "ContractedCost": contracted_cost if not is_tax else None,
+            "ListCost": list_cost,
+            "ContractedCost": contracted_cost,
+            # tax has no unit price (no quantity to price); leave those null
             "ListUnitPrice": list_unit_price if not is_tax else None,
             "ContractedUnitPrice": contracted_unit_price if not is_tax else None,
             # pricing-currency mirrors (PricingCurrency == BillingCurrency here)
@@ -379,11 +391,11 @@ class Generator:
             "SkuId": _sku(rng) if not is_tax else None,
             "SkuPriceId": (_sku(rng) + "." + _sku(rng, 8)) if not is_tax else None,
             "SkuMeter": f"{svc_name} {unit}" if not is_tax else None,
-            # invoice / tags. NOTE: in the 1.2/1.3 model InvoiceId-C-004 and
-            # InvoiceId-C-005 are a contradictory pair (both have empty
-            # conditions), so exactly one always fails regardless of value. We
-            # populate it (satisfying C-005); the residual C-004 failure is an
-            # upstream model bug, reported by the pipeline rather than hidden.
+            # invoice / tags. InvoiceId is populated (realistic). Note: the
+            # 1.2/1.3 InvoiceId-C-004 / C-005 rules sit under an OR that always
+            # passes, so the per-rule red line the engine shows is cosmetic and
+            # is treated as working-as-intended upstream (FOCUS_Spec#2394). The
+            # regeneration loop is told not to null this column (see regenerate.py).
             "InvoiceId": f"INV-{self.config.period.replace('-', '')}-{rng.randint(10000, 99999)}",
             "InvoiceIssuer": prov.provider_name,
             "Tags": tags,
@@ -500,7 +512,9 @@ def _resource_id(prov: Provider, region_id: str, rng) -> str:
     if prov.key == "azure":
         return f"/subscriptions/{prov.billing_account_id}/resourceGroups/rg-{n % 1000}/providers/Microsoft.Compute/virtualMachines/vm-{n % 9999}"
     if prov.key == "gcp":
-        return f"//compute.googleapis.com/projects/{prov.billing_account_name}/zones/{region_id}-a/instances/inst-{n % 9999}"
+        # GCP project ids are lowercase, hyphenated, no spaces.
+        project_id = prov.billing_account_name.lower().replace(" ", "-")
+        return f"//compute.googleapis.com/projects/{project_id}/zones/{region_id}-a/instances/inst-{n % 9999}"
     return f"ocid1.instance.oc1.{region_id}.{n:012x}"
 
 

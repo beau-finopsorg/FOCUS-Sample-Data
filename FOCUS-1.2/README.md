@@ -26,6 +26,8 @@ python -m focusgen regen --version 1.2 --rows 1000 --out ../FOCUS-1.2/focus_samp
 
 ## Known validation note
 
-One rule fails for every row: the `InvoiceId-C-004-C` / `InvoiceId-C-005-C`
-pair in the 1.2 model is contradictory (both have empty conditions, so one
-always fails). See [`../tooling/FINDINGS.md`](../tooling/FINDINGS.md).
+One rule shows a red line for every row: the `InvoiceId-C-004-C` /
+`InvoiceId-C-005-C` pair both have empty conditions, but they sit under an OR
+that always passes, so the line is cosmetic and is treated as working-as-intended
+upstream ([FOCUS_Spec#2394](https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/issues/2394)).
+`InvoiceId` is left populated. See [`../tooling/FINDINGS.md`](../tooling/FINDINGS.md).

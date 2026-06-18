@@ -4,7 +4,9 @@
 # and feedback loop wrap the FOCUS validator, which pulls in the data/SQL stack.
 
 # FOCUS validator (validation engine). Requires Python >= 3.12.
-focus_validator @ git+https://github.com/finopsfoundation/focus_validator.git@main
+# Pinned to a specific commit so the saved reports in tooling/reports/ are
+# reproducible; @main moves and changes which rules pass/skip. Bump deliberately.
+focus_validator @ git+https://github.com/finopsfoundation/focus_validator.git@3e3c907e1c5b4a6cddbb94aa9773ad8a6580ea51
 
 # Pinned transitive stack the validator relies on (kept explicit for CI caching).
 duckdb>=1.4

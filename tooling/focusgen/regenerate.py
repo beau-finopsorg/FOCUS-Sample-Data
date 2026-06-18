@@ -28,6 +28,13 @@ from .validate import ValidationReport, validate
 # Heuristics mapping a rule's MustSatisfy text to a generation override.
 _MUST_BE_NULL = re.compile(r"\bMUST be null\b", re.IGNORECASE)
 
+# Columns the loop must never force to null, even if a rule's text says so.
+# InvoiceId-C-004 ("MUST be null ...") and C-005 ("MUST NOT be null ...") sit
+# under an always-passing OR; the engine's per-rule red line is cosmetic
+# (FOCUS_Spec#2394). Nulling InvoiceId only trades C-004 for C-005 and makes the
+# sample less realistic, so we keep it populated.
+_NEVER_FORCE_NULL = {"InvoiceId"}
+
 
 @dataclass
 class Iteration:
@@ -69,6 +76,8 @@ def _derive_overrides(report: ValidationReport, existing: Dict[str, dict]) -> Di
     """
     overrides = dict(existing)
     for f in report.failures:
+        if f.column in _NEVER_FORCE_NULL:
+            continue
         if _MUST_BE_NULL.search(f.must_satisfy) and f.column:
             overrides[f.column] = {"value": None}
     return overrides
@@ -89,8 +98,13 @@ def regenerate(
     spec = ModelSpec.load(model_path, dataset=dataset)
     overrides: Dict[str, dict] = {}
     history: List[Iteration] = []
-    prev_failed = None
     report: Optional[ValidationReport] = None
+
+    # Track the best (fewest failures) iteration so we always ship the best
+    # output, not whatever the last iteration happened to produce.
+    best_failed = None
+    best_overrides: Dict[str, dict] = {}
+    best_report: Optional[ValidationReport] = None
 
     for i in range(1, max_iters + 1):
         cfg = GenConfig(version=version, rows=rows, seed=seed, providers=providers,
@@ -101,29 +115,37 @@ def regenerate(
         if report.error:
             # engine/model error (e.g. dependency cycle) - cannot iterate
             history.append(Iteration(index=i, failed=-1, failing_rules=[report.error[:80]]))
+            best_report = best_report or report
             break
 
         history.append(Iteration(index=i, failed=report.failed,
                                   failing_rules=[f.rule_id for f in report.failures]))
+        # strictly-better keeps the earliest minimal result on ties
+        if best_failed is None or report.failed < best_failed:
+            best_failed, best_overrides, best_report = report.failed, dict(overrides), report
         if report.compliant:
             break
 
         new_overrides = _derive_overrides(report, overrides)
-        # stop if a full pass produced no new corrective action or no improvement
-        no_new_action = new_overrides == overrides
-        no_improvement = prev_failed is not None and report.failed >= prev_failed
-        if no_new_action or (no_improvement and i > 1):
+        if new_overrides == overrides:  # no further corrective action available
             break
         overrides = new_overrides
-        prev_failed = report.failed
 
-    persistent = [f.rule_id for f in (report.failures if report else [])]
+    # Ensure the file on disk corresponds to the best iteration.
+    if best_report is not None and not best_report.error and best_overrides != overrides:
+        cfg = GenConfig(version=version, rows=rows, seed=seed, providers=providers,
+                        period=period, overrides=best_overrides)
+        Generator(spec, cfg).write_csv(out_path)
+        best_report = validate(out_path, version, dataset=dataset, rule_set_path=rule_set_path)
+
+    final = best_report if best_report is not None else report
+    persistent = [f.rule_id for f in (final.failures if final else [])]
     return RegenResult(
         version=version,
         out_path=str(out_path),
-        compliant=bool(report and report.compliant),
+        compliant=bool(final and final.compliant),
         iterations=len(history),
-        final=report,  # type: ignore[arg-type]
+        final=final,  # type: ignore[arg-type]
         history=history,
         persistent_failures=persistent,
     )

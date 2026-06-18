@@ -27,7 +27,7 @@
     {
       "rule_id": "CAU-PricingCurrencyContractedUnitPrice-C-012-C",
       "must_satisfy": "PricingCurrencyContractedUnitPrice MUST NOT be null when SkuPriceId is not null.",
-      "violations": 44,
+      "violations": 46,
       "message": "PricingCurrencyContractedUnitPrice MUST NOT be NULL.",
       "reason": "",
       "column": "PricingCurrencyContractedUnitPrice"

@@ -18,7 +18,7 @@ multi-dataset versions (1.3+) name every dataset explicitly, e.g.
 for the back-port caveats and the upstream model issues this surfaced (including
 the 1.4 CostAndUsage model cycle).
 
-The tooling does three things:
+The tooling does four things:
 
 1. **Generate** spec-compliant sample data for a FOCUS version and dataset.
 2. **Validate** any sample (generated or existing) against the FOCUS
@@ -27,6 +27,8 @@ The tooling does three things:
    produce a machine-readable report.
 3. **Regenerate** in a closed feedback loop: generate, validate, adjust, repeat
    until the data is compliant or only upstream-model failures remain.
+4. **Back-port** unofficial 1.0/1.1 models from the 1.2 model (see caveats in
+   [`FINDINGS.md`](FINDINGS.md)).
 
 ## Why this design
 
@@ -48,8 +50,10 @@ version is mostly a matter of dropping in its model file.
                   \------ focusgen.regenerate ------/   (feedback loop)
 ```
 
-Only versions with a machine-readable model can be generated/validated, which
-is why 1.0 and 1.1 are out of scope (no requirements model exists for them).
+Versions with an official machine-readable model (1.2 through 1.4) are generated
+and validated directly. 1.0 and 1.1 have no official model, so they use
+unofficial back-ported models (see [`FINDINGS.md`](FINDINGS.md)) for
+round-tripping and smoke-testing.
 
 ## Layout
 
@@ -138,14 +142,16 @@ spec/model issues and are reported explicitly rather than hidden. See
 1. Assemble the model with the spec repo's `build_json.py`
    (`python build_json.py --build-only --version 1.5`).
 2. Copy the result to `tooling/specs/model-1.5.json`.
-3. Add `"1.5"` to `SUPPORTED_VERSIONS` in `focusgen/__init__.py` and the CI
-   matrix in `.github/workflows/validate-sample-data.yml`.
+3. Add `"1.5"` to `SUPPORTED_VERSIONS` (and `DATASETS_BY_VERSION`) in
+   `focusgen/__init__.py`. CI reads the version list from there, so no workflow
+   change is needed.
 4. Run `python -m focusgen regen --version 1.5 ...` and address any failures the
    generator's coherence layer does not already cover.
 
 ## CI
 
-* **`validate-sample-data.yml`** — validates each `FOCUS-<version>/focus_sample*.csv`
-  against its model on push/PR (version matrix), uploading reports.
+* **`validate-sample-data.yml`** — runs the unit tests, then one `validate-all`
+  step over every `FOCUS-<version>/focus_sample*.csv` (versions discovered from
+  `SUPPORTED_VERSIONS`) on push/PR, uploading reports.
 * **`generate-sample-data.yml`** — on-demand/monthly regeneration that opens a PR
   with refreshed samples and reports.

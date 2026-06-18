@@ -92,10 +92,12 @@ Detailed in [`tooling/FINDINGS.md`](tooling/FINDINGS.md):
 * The **FOCUS 1.4 working-draft model cannot be loaded for CostAndUsage** due to
   a dependency cycle in the `CommitmentDiscount*` rules. The other three 1.4
   datasets are unaffected.
-* Several **upstream model-rule defects** in 1.2/1.3 (a contradictory
-  `InvoiceId` rule pair, malformed `CapacityReservationStatus` conditions, an
-  inverted `PricingCurrencyContractedUnitPrice` condition). These account for
-  the only residual failures on otherwise-compliant generated CostAndUsage data.
+* Several **upstream model-rule quirks** in 1.2/1.3 (malformed
+  `CapacityReservationStatus` conditions, an inverted
+  `PricingCurrencyContractedUnitPrice` condition, and the cosmetic `InvoiceId`
+  rule line that is working-as-intended). These account for the only residual
+  failures on otherwise-compliant generated CostAndUsage data, and all are
+  tracked upstream (see FINDINGS.md for issue links).
 
 ### Note on 1.0 / 1.1
 

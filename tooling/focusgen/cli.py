@@ -131,14 +131,23 @@ def cmd_build_all(args) -> int:
     return rc
 
 
-def _dataset_from_filename(version: str, fname: str) -> str:
+def _dataset_from_filename(version: str, fname: str):
+    """Map a sample filename to its dataset, or None if unrecognised.
+
+    Returning None (rather than defaulting to CostAndUsage) makes a typo'd
+    filename visible instead of silently validating it against the wrong rules.
+    """
     if fname == "focus_sample.csv":
         return DEFAULT_DATASET
     suffix = fname[len("focus_sample_"):-len(".csv")]
+    # numeric suffix is a row-count size variant of CostAndUsage
+    # (e.g. focus_sample_10000.csv), not a separate dataset.
+    if suffix.isdigit():
+        return DEFAULT_DATASET
     for ds in DATASETS_BY_VERSION.get(version, (DEFAULT_DATASET,)):
         if ds.lower() == suffix:
             return ds
-    return DEFAULT_DATASET
+    return None
 
 
 def cmd_validate_all(args) -> int:
@@ -154,6 +163,10 @@ def cmd_validate_all(args) -> int:
         for csv in sorted(vdir.glob("focus_sample*.csv")):
             found = True
             dataset = _dataset_from_filename(version, csv.name)
+            if dataset is None:
+                print(f"  FOCUS {version:4} {'?':18} {csv.name:42} -> SKIPPED (unrecognised dataset name)")
+                rc = 1
+                continue
             report = validate(str(csv), version, dataset=dataset, rule_set_path=str(SPECS_DIR))
             tag = version if dataset == DEFAULT_DATASET else f"{version}-{dataset.lower()}"
             (reports_dir / f"validation-{tag}.json").write_text(report.to_json())
@@ -208,7 +221,7 @@ def build_parser() -> argparse.ArgumentParser:
     r.set_defaults(func=cmd_regen)
 
     b = sub.add_parser("build-all", help="build samples for all supported versions")
-    b.add_argument("--base", default=".", help="repo root under which FOCUS-<version>/ dirs are written")
+    b.add_argument("--base", default="..", help="repo root under which FOCUS-<version>/ dirs are written")
     b.add_argument("--versions", nargs="*", default=None)
     b.add_argument("--rows", type=int, default=1000)
     b.add_argument("--seed", type=int, default=42)

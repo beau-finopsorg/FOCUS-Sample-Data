@@ -9,10 +9,10 @@
   "skipped": 441,
   "failures": [
     {
-      "rule_id": "InvoiceId-C-005-C",
-      "must_satisfy": "InvoiceId MUST NOT be null when the charge is associated with either an issued invoice or a pre-generated provisional invoice.",
+      "rule_id": "InvoiceId-C-004-C",
+      "must_satisfy": "InvoiceId MUST be null when the charge is not associated either with an invoice or with a pre-generated provisional invoice.",
       "violations": 1000,
-      "message": "InvoiceId MUST NOT be NULL.",
+      "message": "InvoiceId MUST be NULL.",
       "reason": "",
       "column": "InvoiceId"
     }

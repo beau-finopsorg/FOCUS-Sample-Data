@@ -64,13 +64,26 @@ engine error rather than crashing.
 
 These are the only failures remaining on freshly generated, otherwise-compliant
 samples. They persist regardless of data content, which points at the rules
-themselves.
+themselves. All are already tracked upstream (confirmed in PR review): the
+CapacityReservationStatus and contradictory-null patterns in
+[FOCUS_Spec#2393](https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/issues/2393)
+and [#2394](https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/issues/2394),
+the `FormatJSON` gap in
+[focus_validator#138](https://github.com/finopsfoundation/focus_validator/issues/138)
+(fix [#141](https://github.com/finopsfoundation/focus_validator/pull/141)), and
+the 1.4 dependency cycle in
+[FOCUS_Spec#2447](https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/issues/2447).
+`PricingCurrencyContractedUnitPrice-C-012-C` (inverted condition) is still in the
+1.4 working draft and does not appear separately filed yet.
 
-* **`InvoiceId-C-004-C` vs `InvoiceId-C-005-C` (1.2) — contradictory pair.**
-  C-004 requires `InvoiceId` be null "when not associated with an invoice";
-  C-005 requires it be non-null "when associated". Both have an **empty
-  `Condition`**, so each applies to every row unconditionally. No value can
-  satisfy both — exactly one always fails.
+* **`InvoiceId-C-004-C` / `InvoiceId-C-005-C` (1.2) — cosmetic, working as
+  intended.** C-004 ("MUST be null ...") and C-005 ("MUST NOT be null ...") both
+  have an empty `Condition`, so each looks like it applies to every row. They
+  sit under an OR that always passes, so the per-rule red line the engine prints
+  is cosmetic and needs no fix (triaged in
+  [FOCUS_Spec#2394](https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/issues/2394)).
+  The generator therefore keeps `InvoiceId` populated and the regeneration loop
+  is told not to null it.
 
 * **`CapacityReservationStatus-C-003-C` / `-C-004-C` (1.3) — malformed condition
   JSON.** The conditions are written as `{"AND": {...}}` / `{"AND": [...]}`
@@ -123,8 +136,8 @@ Caveat: these inherit **1.2 rule logic** for retained columns. Where 1.0/1.1
 defined allowed values, nullability, or relationships differently, the back-port
 reflects 1.2. They are for round-tripping and smoke-testing, not authoritative
 conformance. Generated 1.0/1.1 samples validate clean (1.1: 130 pass / 0 fail;
-1.0: 122 pass / 0 fail) — and notably do **not** hit the `InvoiceId`
-contradiction because `InvoiceId` is a 1.2 column.
+1.0: 122 pass / 0 fail) — and notably do **not** show the cosmetic `InvoiceId`
+rule line because `InvoiceId` is a 1.2 column.
 
 ## Generated-sample status (1000 rows each, CostAndUsage unless noted)
 
@@ -132,7 +145,7 @@ contradiction because `InvoiceId` is a 1.2 column.
 |---------|------|------|-------|
 | 1.0 (CAU, back-port) | 122 | 0 | synthetic; real-world data not overwritten |
 | 1.1 (CAU, back-port) | 130 | 0 | |
-| 1.2     | 136  | 1    | `InvoiceId` contradiction (item 3) |
+| 1.2     | 136  | 1    | `InvoiceId-C-004` cosmetic / working-as-intended (item 3) |
 | 1.3     | 338  | 4    | `CapacityReservationStatus` + `PricingCurrencyContractedUnitPrice` (item 3) |
 | 1.3 ContractCommitment | 75 | 0 | |
 | 1.4 CostAndUsage | n/a | n/a | model cannot be loaded (item 2) |

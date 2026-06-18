@@ -182,9 +182,10 @@ class ModelSpec:
 
         We populate required and recommended columns. Conditional columns are
         included with mostly-null values so the schema is complete without
-        tripping conditional rules.
+        tripping conditional rules. Purely optional columns (no presence rule in
+        the dataset) are not emitted.
         """
-        order = {"required": 0, "recommended": 1, "conditional": 2, "optional": 3}
+        order = {"required": 0, "recommended": 1, "conditional": 2}
         cols = [c for c in self.columns.values() if c.presence in order]
         cols.sort(key=lambda c: (order[c.presence], c.name))
         return cols

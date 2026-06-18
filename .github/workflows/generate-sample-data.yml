@@ -1,8 +1,11 @@
 name: Generate sample data
 
-# On-demand (and monthly) regeneration of the FOCUS sample datasets using the
+# On-demand regeneration of the FOCUS sample datasets using the
 # generate -> validate -> self-correct loop. Opens a pull request with the
 # refreshed samples and their validation reports.
+#
+# Manual (workflow_dispatch) only, to avoid churn from automatic monthly PRs.
+# To run on a schedule, add a `schedule:` trigger here.
 
 on:
   workflow_dispatch:
@@ -19,8 +22,6 @@ on:
         description: "Allow PR even if only persistent (upstream model) failures remain"
         type: boolean
         default: true
-  schedule:
-    - cron: "0 6 1 * *"   # 06:00 UTC on the 1st of each month
 
 jobs:
   generate:

@@ -118,6 +118,11 @@ def _validate_inprocess(data_file, version, dataset, rule_set_path, block_downlo
 
     report = ValidationReport(version=version, model_version="unknown", data_file=display_name)
     buf = io.StringIO()
+    # The whole block - running the validator AND reading its results - is
+    # guarded, so an engine error *or* an unexpected result shape (e.g. a future
+    # validator build that drops `by_rule_id`) is recorded in report.error
+    # rather than crashing the run. This matters while the validator tracks a
+    # moving branch.
     try:
         with contextlib.redirect_stdout(buf), _chdir(pkg_parent):
             validator = Validator(
@@ -130,34 +135,33 @@ def _validate_inprocess(data_file, version, dataset, rule_set_path, block_downlo
                 rules_block_remote_download=block_download,
             )
             results = validator.validate()
-    except Exception as exc:  # noqa: BLE001 - surface upstream model/engine errors in the report
-        report.error = f"{type(exc).__name__}: {exc}"
-        return report
 
-    report.model_version = getattr(results, "model_version", "unknown")
-    report.row_count = getattr(results, "data_row_count", 0)
-    rules = getattr(results, "rules", {}) or {}
+        report.model_version = getattr(results, "model_version", "unknown")
+        report.row_count = getattr(results, "data_row_count", 0)
+        rules = getattr(results, "rules", {}) or {}
 
-    for rule_id, entry in results.by_rule_id.items():
-        details = entry.get("details") or {}
-        if details.get("skipped"):
-            report.skipped += 1
-            continue
-        if entry.get("ok"):
-            report.passed += 1
-            continue
-        report.failed += 1
-        report.failures.append(
-            Failure(
-                rule_id=rule_id,
-                must_satisfy=_must_satisfy(rules.get(rule_id)),
-                violations=int(details.get("violations", 0) or 0),
-                message=str(details.get("message", "") or ""),
-                reason=str(details.get("reason", "") or ""),
-                column=_column_from_rule_id(rule_id),
+        for rule_id, entry in results.by_rule_id.items():
+            details = entry.get("details") or {}
+            if details.get("skipped"):
+                report.skipped += 1
+                continue
+            if entry.get("ok"):
+                report.passed += 1
+                continue
+            report.failed += 1
+            report.failures.append(
+                Failure(
+                    rule_id=rule_id,
+                    must_satisfy=_must_satisfy(rules.get(rule_id)),
+                    violations=int(details.get("violations", 0) or 0),
+                    message=str(details.get("message", "") or ""),
+                    reason=str(details.get("reason", "") or ""),
+                    column=_column_from_rule_id(rule_id),
+                )
             )
-        )
-    report.total = report.passed + report.failed + report.skipped
+        report.total = report.passed + report.failed + report.skipped
+    except Exception as exc:  # noqa: BLE001 - surface engine/model/result errors in the report
+        report.error = f"{type(exc).__name__}: {exc}"
     return report
 
 
@@ -206,6 +210,10 @@ def _validate_subprocess(data_file, version, dataset, rule_set_path, block_downl
         if ("❌" in line or "[FAIL]" in line):
             rid = s.split()[1].rstrip(":") if len(s.split()) > 1 else s
             report.failures.append(Failure(rule_id=rid, message=s, column=_column_from_rule_id(rid)))
+    # Reconcile: the parsed summary line and the parsed failure lines can
+    # disagree; trust whichever reports more failures so a problem is not hidden.
+    if len(report.failures) > report.failed:
+        report.failed = len(report.failures)
     if proc.returncode != 0 and report.total == 0:
         report.error = out[-2000:]
     return report
